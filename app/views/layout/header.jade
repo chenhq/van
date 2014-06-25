@@ -1,0 +1,203 @@
+html
+    body
+        header.clearfix
+            // Logo
+            .logo
+                a(href='#/')
+                    // <span class="logo-icon glyphicon glyphicon-fire"></span>
+                    span {{main.brand}}
+            // needs to be put after logo to make it working
+            .menu-button(toggle-off-canvas='')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            .top-nav
+                ul.nav-left.list-unstyled
+                    li
+                        a.toggle-min(href='#/', data-toggle-min-nav='')
+                            i.fa.fa-bars
+                    //
+                      <li class="dropdown">
+                      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-columns"></i></a>
+                      <ul class="dropdown-menu dropdown-dark with-arrow">
+                      <li> <a href="javascript:;"><span data-i18n="Boxed Layout"></span></a> </li>
+                      <li> <a href="javascript:;"><span data-i18n="Full Width Layout"></span></a> </li>
+                      <li> <a href="javascript:;"><span data-i18n="Collapsed Menu"></span></a> </li>
+                      <li> <a href="javascript:;"><span data-i18n="Horizontal Menu"></span></a> </li>
+                      <li> <a href="javascript:;"><span data-i18n="Vertical Menu"></span></a> </li>
+                      </ul>
+                      </li>
+                    li.dropdown.text-normal.nav-profile
+                        a.dropdown-toggle(href='javascript:;', data-toggle='dropdown')
+                            img.img-circle.img30_30(src='images/g1.jpg', alt='')
+                            span.hidden-xs
+                                span Lisa Doe
+                        ul.dropdown-menu.dropdown-dark.with-arrow
+                            li
+                                a(href='#/pages/profile')
+                                    i.fa.fa-user
+                                    span My Profile
+                            li
+                                a(href='#/tasks')
+                                    i.fa.fa-check
+                                    span My Tasks
+                            li
+                                a(href='#/pages/lock-screen')
+                                    i.fa.fa-lock
+                                    span Lock
+                            li
+                                a(href='#/pages/signin')
+                                    i.fa.fa-sign-out
+                                    span Log Out
+                    // li.dropdown.langs.text-normal(data-ng-controller='LangCtrl')
+                    li.dropdown.langs.text-normal()
+                        a.dropdown-toggle.active-flag(href='javascript:;', data-toggle='dropdown')
+                            // .flag.{{.getFlag().}}
+                        ul.dropdown-menu.dropdown-dark.with-arrow.list-langs(role='menu')
+                            li(data-ng-show="lang !== 'English' ")
+                                a(href='javascript:;', data-ng-click="setLang('English')")
+                                    .flag.flags-american
+                                    |  English
+                            li(data-ng-show="lang !== 'Español' ")
+                                a(href='javascript:;', data-ng-click="setLang('Español')")
+                                    .flag.flags-spain
+                                    |  Espa&ntilde;ol
+                            li(data-ng-show="lang !== '日本語' ")
+                                a(href='javascript:;', data-ng-click="setLang('日本語')")
+                                    .flag.flags-japan
+                                    |  &#x65E5;&#x672C;&#x8A9E;
+                            li(data-ng-show="lang !== '中文' ")
+                                a(href='javascript:;', data-ng-click="setLang('中文')")
+                                    .flag.flags-china
+                                    |  &#x4E2D;&#x6587;
+                            li(data-ng-show="lang !== 'Deutsch' ")
+                                a(href='javascript:;', data-ng-click="setLang('Deutsch')")
+                                    .flag.flags-germany
+                                    |  Deutsch
+                            li(data-ng-show="lang !== 'français' ")
+                                a(href='javascript:;', data-ng-click="setLang('français')")
+                                    .flag.flags-france
+                                    |  fran&ccedil;ais
+                            li(data-ng-show="lang !== 'Italiano' ")
+                                a(href='javascript:;', data-ng-click="setLang('Italiano')")
+                                    .flag.flags-italy
+                                    |  Italiano
+                            li(data-ng-show="lang !== 'Portugal' ")
+                                a(href='javascript:;', data-ng-click="setLang('Portugal')")
+                                    .flag.flags-portugal
+                                    |  Portugal
+                            li(data-ng-show="lang !== 'Русский язык' ")
+                                a(href='javascript:;', data-ng-click="setLang('Русский язык')")
+                                    .flag.flags-russia
+                                    |  &Rcy;&ucy;&scy;&scy;&kcy;&icy;&jcy; &yacy;&zcy;&ycy;&kcy;
+                            li(data-ng-show="lang !== '한국어' ")
+                                a(href='javascript:;', data-ng-click="setLang('한국어')")
+                                    .flag.flags-korea
+                                    |  &#xD55C;&#xAD6D;&#xC5B4;
+                    //
+                      <li class="dropdown">
+                      <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="fa fa-magic nav-icon"></span>
+                      </a>
+                      <ul class="dropdown-menu pull-right color-switch" data-ui-color-switch>
+                      <li><a href="javascript:;" class="color-option color-some_color" data-style="some_color"></a></li>
+                      </ul>
+                      </li>
+                ul.nav-right.pull-right.list-unstyled
+                    li.dropdown
+                        a.dropdown-toggle.bg-orange(href='javascript:;', data-toggle='dropdown')
+                            i.fa.fa-comment-o
+                            span.badge.badge-info 2
+                        .dropdown-menu.pull-right.with-arrow.panel.panel-default
+                            .panel-heading
+                                | You have 2 messages.
+                            ul.list-group
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-info
+                                                i.fa.fa-comment-o
+                                        .media-body
+                                            span.block Jane sent you a message
+                                            span.text-muted 3 hours ago
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-danger
+                                                i.fa.fa-comment-o
+                                        .media-body
+                                            span.block Lynda sent you a mail
+                                            span.text-muted 9 hours ago
+                            .panel-footer
+                                a(href='javascript:;') Show all messages.
+                    li.dropdown
+                        a.dropdown-toggle.bg-warning(href='javascript:;', data-toggle='dropdown')
+                            i.fa.fa-envelope-o
+                            span.badge.badge-info 3
+                        .dropdown-menu.pull-right.with-arrow.panel.panel-default
+                            .panel-heading
+                                | You have 3 mails.
+                            ul.list-group
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-warning
+                                                i.fa.fa-envelope-o
+                                        .media-body
+                                            span.block Lisa sent you a mail
+                                            span.text-muted.block 2min ago
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-info
+                                                i.fa.fa-envelope-o
+                                        .media-body
+                                            span.block Jane sent you a mail
+                                            span.text-muted 3 hours ago
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-success
+                                                i.fa.fa-envelope-o
+                                        .media-body
+                                            span.block Lynda sent you a mail
+                                            span.text-muted 9 hours ago
+                            .panel-footer
+                                a(href='javascript:;') Show all mails.
+                    li.dropdown
+                        a.dropdown-toggle.bg-success(href='javascript:;', data-toggle='dropdown')
+                            i.fa.fa-bell-o.nav-icon
+                            span.badge.badge-info 3
+                        .dropdown-menu.pull-right.with-arrow.panel.panel-default
+                            .panel-heading
+                                | You have 3 notifications.
+                            ul.list-group
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-success
+                                                i.fa.fa-bell-o
+                                        .media-body
+                                            span.block New tasks needs to be done
+                                            span.text-muted.block 2min ago
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-info
+                                                i.fa.fa-bell-o
+                                        .media-body
+                                            span.block Change your password
+                                            span.text-muted 3 hours ago
+                                li.list-group-item
+                                    a.media(href='javascript:;')
+                                        span.pull-left.media-icon
+                                            span.square-icon.sm.bg-danger
+                                                i.fa.fa-bell-o
+                                        .media-body
+                                            span.block New feature added
+                                            span.text-muted 9 hours ago
+                            .panel-footer
+                                a(href='javascript:;') Show all notifications.
+                    li
+                        a.bg-info(href='#/tasks')
+                            i.fa.fa-tasks

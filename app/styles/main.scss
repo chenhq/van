@@ -1,0 +1,7 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import "global/var";
+@import "../bower_components/sass-bootstrap/lib/bootstrap";
+@import "global/var-pages";
+@import "sections/header";
+@import "sections/nav";

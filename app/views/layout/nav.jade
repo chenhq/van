@@ -1,0 +1,65 @@
+html
+    body
+        #nav-wrapper
+            // ul#nav(data-ng-controller='NavCtrl', data-slim-scroll='', data-collapse-nav='', data-highlight-active='')
+            ul#nav()
+                li
+                    a(href='#/dashboard')
+                        i.fa.fa-dashboard
+                        span Dashboard
+                li
+                    a(href='#/alert-mngm')
+                        i.fa.fa-magic
+                        span Alert Management
+                    ul
+                        li
+                            a(href='#/alert/define')
+                                i.fa.fa-caret-right
+                                span Define
+                        li
+                            a(href='#/alert/find')
+                                i.fa.fa-caret-right
+                                span Find
+                li
+                    a(href='#/log-mngm')
+                        i.fa.fa-magic
+                        span Log Management
+                    ul
+                        li
+                            a(href='#/log/host-group')
+                                i.fa.fa-caret-right
+                                span Host Group
+                        li
+                            a(href='#/log/group')
+                                i.fa.fa-caret-right
+                                span Log Group
+                        li
+                            a(href='#/log/format')
+                                i.fa.fa-caret-right
+                                span Format Define
+                        li
+                            a(href='#/log/api')
+                                i.fa.fa-caret-right
+                                span API
+                li
+                    a(href='#/log-mngm')
+                        i.fa.fa-magic
+                        span Privilege Management
+                    ul
+                        li
+                            a(href='#/privilege/user-group')
+                                i.fa.fa-caret-right
+                                span User & Group
+                        li
+                            a(href='#/privilege/log-group')
+                                i.fa.fa-caret-right
+                                span Log Privilege
+                li
+                    a(href='#/conf-assistant')
+                        i.fa.fa-magic
+                        span Configuration Assistant
+                    ul
+                        li
+                            a(href='#/conf/wizard')
+                                i.fa.fa-caret-right
+                                span Configuration Wizard
