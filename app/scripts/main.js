@@ -10,10 +10,15 @@ require.config({
     jquery: '../bower_components/jquery/dist/jquery',
     'angular-scenario': '../bower_components/angular-scenario/angular-scenario',
     'angular-mocks': '../bower_components/angular-mocks/angular-mocks',
-    'jquery.slimscroll': '../bower_components/jquery.slimscroll/jquery.slimscroll.min'
+    'jquery.slimscroll': '../bower_components/jquery.slimscroll/jquery.slimscroll',
+    'requirejs-domready': '../bower_components/requirejs-domready/domReady',
+    'font-awesome': '../bower_components/font-awesome/fonts/*'
   },
   shim: {
     angular: {
+      deps: [
+        'jquery'
+      ],
       exports: 'angular'
     },
     'angular-route': [
@@ -34,15 +39,14 @@ require.config({
       ],
       exports: 'angular.mock'
     },
-      jquery: {
-          exports: 'jQuery'
-      },
-      'jquery.slimscroll': { deps: ['jquery'] }
-
-  },
-  priority: [
-    'angular'
-  ]
+    'jquery.slimscroll': {
+      deps: [
+        'jquery',
+        'angular'
+      ],
+      exports: 'jQuery.fn.slimScroll'
+    }
+  }
 });
 
 //http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
@@ -54,8 +58,8 @@ require([
   'angular-route',
   'angular-cookies',
   'angular-sanitize',
-  'angular-resource',
-], function(angular, app, ngRoutes, ngCookies, ngSanitize, ngResource) {
+  'angular-resource'
+  ], function(angular, app, ngRoutes, ngCookies, ngSanitize, ngResource) {
   'use strict';
   /* jshint ignore:start */
   var $html = angular.element(document.getElementsByTagName('html')[0]);

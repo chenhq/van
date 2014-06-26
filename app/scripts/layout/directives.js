@@ -1,11 +1,11 @@
-define(['angular', 'jquery.slimscroll'], function (angular) {
+define(['angular', 'jquery.slimscroll'], function(angular) {
   'use strict';
-  angular.module('vanApp.directives')
+  angular.module('vanApp.layout.directives', [])
   	.directive('slimScroll', function () {
       return {
       	restrict: 'A',
       	link: function(scope, element, attrs) {
-            element.slimScroll({
+                angular.element(element).slimScroll({
                 height: attrs.scrollHeight || '100%'
             });
       	}

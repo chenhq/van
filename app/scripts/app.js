@@ -1,10 +1,8 @@
 /*jshint unused: vars */
-define(['angular', 'controllers/main', 'layout/directives/slimscroll', 'directives/testdirective']/*deps*/, function (angular, MainCtrl, TestdirectiveDirective)/*invoke*/ {
+define(['angular', 'controllers/main', 'layout/all']/*deps*/, function (angular, MainCtrl)/*invoke*/ {
   'use strict';
-  return angular.module('vanApp', ['vanApp.controllers',
-  'vanApp.directives',
-'vanApp.directives.Testdirective',
-/*angJSDeps*/
+  return angular.module('vanApp', ['vanApp.layout',
+  'vanApp.controllers',
   'ngCookies',
   'ngResource',
   'ngSanitize',

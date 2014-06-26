@@ -1,11 +1,14 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import "global/var";
+// @import "sass-bootstrap/lib/bootstrap";
 @import "../bower_components/sass-bootstrap/lib/bootstrap";
-// @import "compass";
+//@import "compass";
+@import "compass/css3";
 @import "global/var-pages";
 
 
+@import "ui/ui";
 //sections
 @import "sections/shared";
 @import "sections/nav";
