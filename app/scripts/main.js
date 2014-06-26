@@ -9,7 +9,8 @@ require.config({
     'sass-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
     jquery: '../bower_components/jquery/dist/jquery',
     'angular-scenario': '../bower_components/angular-scenario/angular-scenario',
-    'angular-mocks': '../bower_components/angular-mocks/angular-mocks'
+    'angular-mocks': '../bower_components/angular-mocks/angular-mocks',
+    'jquery.slimscroll': '../bower_components/jquery.slimscroll/jquery.slimscroll.min'
   },
   shim: {
     angular: {
@@ -32,7 +33,12 @@ require.config({
         'angular'
       ],
       exports: 'angular.mock'
-    }
+    },
+      jquery: {
+          exports: 'jQuery'
+      },
+      'jquery.slimscroll': { deps: ['jquery'] }
+
   },
   priority: [
     'angular'
@@ -48,7 +54,7 @@ require([
   'angular-route',
   'angular-cookies',
   'angular-sanitize',
-  'angular-resource'
+  'angular-resource',
 ], function(angular, app, ngRoutes, ngCookies, ngSanitize, ngResource) {
   'use strict';
   /* jshint ignore:start */

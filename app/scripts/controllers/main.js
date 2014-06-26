@@ -1,7 +1,7 @@
 define(['angular', 'lodash'], function (angular, _) {
   'use strict';
 
-  angular.module('vanApp.controllers.MainCtrl', [])
+  angular.module('vanApp.controllers', [])
     .controller('MainCtrl', function ($scope, $location) {
       $scope.awesomeThings = [
         'HTML5 Boilerplate',
