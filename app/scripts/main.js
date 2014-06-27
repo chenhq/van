@@ -11,8 +11,9 @@ require.config({
     'angular-scenario': '../bower_components/angular-scenario/angular-scenario',
     'angular-mocks': '../bower_components/angular-mocks/angular-mocks',
     'jquery.slimscroll': '../bower_components/jquery.slimscroll/jquery.slimscroll',
-    'requirejs-domready': '../bower_components/requirejs-domready/domReady',
-    'font-awesome': '../bower_components/font-awesome/fonts/*'
+    // 'requirejs-domready': '../bower_components/requirejs-domready/domReady',
+    'font-awesome': '../bower_components/font-awesome/fonts/*',
+     'ui-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls'
   },
   shim: {
     angular: {
@@ -21,6 +22,7 @@ require.config({
       ],
       exports: 'angular'
     },
+    'ui-bootstrap': ['angular'],
     'angular-route': [
       'angular'
     ],
@@ -58,7 +60,7 @@ require([
   'angular-route',
   'angular-cookies',
   'angular-sanitize',
-  'angular-resource'
+  'angular-resource',
   ], function(angular, app, ngRoutes, ngCookies, ngSanitize, ngResource) {
   'use strict';
   /* jshint ignore:start */

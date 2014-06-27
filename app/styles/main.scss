@@ -2,7 +2,8 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import "global/var";
 // @import "sass-bootstrap/lib/bootstrap";
-@import "../bower_components/sass-bootstrap/lib/bootstrap";
+@import "../bower_components/twbs-bootstrap-sass/assets/stylesheets/bootstrap/bootstrap";
+// @import "../bower_components/sass-bootstrap/lib/bootstrap";
 //@import "compass";
 @import "compass/css3";
 @import "global/var-pages";
@@ -14,6 +15,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import "sections/nav";
 @import "sections/nav-off-canvas";
 @import "sections/nav-min";
-@import "sections/header";
+// @import "sections/header";
 @import "sections/content";
 @import "sections/form";
+@import "sections/header";

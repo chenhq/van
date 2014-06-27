@@ -1,6 +1,7 @@
 define(['angular', 'lodash'], function (angular, _) {
     'use strict';
-  angular.module('app.directives', []).directive('imgHolder', [
+  var angular.module('app.directives', []);
+    .directive('imgHolder', [
     function() {
       return {
         restrict: 'A',
