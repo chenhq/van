@@ -1,0 +1,12 @@
+html
+  body
+    .modal-header
+      button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+      h3 Last Elasticsearch Query
+    .modal-body
+      div
+        pre.
+          \ncurl -XGET '{{config.elasticsearch}}/{{dashboard.indices|stringify}}/_search?pretty' -d '{{inspector}}'
+                        
+    .modal-footer
+      button.btn.btn-success(type='button', ng-click='dismiss()') Close

@@ -1,49 +1,47 @@
 doctype html
+//if lt IE 7
+  html.no-js.lt-ie9.lt-ie8.lt-ie7  
 //if IE 7
-  html#ng-app.no-js.lt-ie9.lt-ie8(ng-app='')  
+  html.no-js.lt-ie9.lt-ie8  
 //if IE 8
-  html#ng-app.no-js.lt-ie9(ng-app='')  
+  html.no-js.lt-ie9  
 // [if gt IE 8] <!
-html.no-js()
+html.no-js
   // <![endif]
   head
     meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title
-    meta(name='description', content='')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
     meta(name='viewport', content='width=device-width')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
-    // Place favicon.ico and apple-touch-icon.png in the root directory
-    // build:css styles/vendor.css
-    // bower:css
-    // link(rel='stylesheet', href='bower_components/sass-bootstrap/dist/css/bootstrap.css')
-    link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic', rel='stylesheet', type='text/css')
-
-    link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.min.css')
-    // endbower
-    // endbuild
-    // build:css({.tmp,app}) styles/main.css
-    link(rel='stylesheet', href='styles/main.css')
-    // endbuild
-    script(src='bower_components/requirejs/require.js', data-main='scripts/main.js')
-  body#app(ng-app='vanApp', custom-background='')
-    //if lt IE 7
-      p.browsehappy
-        | You are using an 
-        strong outdated
-        |  browser. Please 
-        a(href='http://browsehappy.com/') upgrade your browser
-        |  to improve your experience.
-    // Add your site or application content here
-    div(ng-controller='MainCtrl')
-      .no-print(ng-hide='isSpecificPage()', ng-cloak='')
-        section#header.top-header(ng-include="'views/layout/header.html'")
-        aside#nav-container(ng-include="'views/layout/nav.html'")
-      .view-container
-          section#content.animate-fade-up(ng-view='')
-    //if lt IE 9
-      script(src='bower_components/es5-shim/es5-shim.js')
-      script(src='bower_components/json3/lib/json3.min.js')
-
-    //script(src='bower_components/jquery/dist/jquery.js')
-    //script(src='bower_components/jquery.slimscroll/jquery.slimscroll.min.js')
+    title iHunter {{dashboard.current.title ? &quot; - &quot;+dashboard.current.title : &quot;&quot;}}
+    link(rel='stylesheet', href='css/bootstrap.light.min.css', title='Light')
+    link(rel='stylesheet', href='css/timepicker.css')
+    link(rel='stylesheet', href='css/animate.min.css')
+    link(rel='stylesheet', href='css/normalize.min.css')
+    // load the root require context
+    script(src='vendor/require/require.js')
+    script(src='components/require.config.js')
+    script.
+      require(['app'], function () {})
+    style.
+  body
+    noscript
+      .container
+        center
+          h3 You must enable javascript to use Kibana
+    // <link rel="stylesheet" ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css">
+    link(rel='stylesheet', ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css")
+    link(rel='stylesheet', href='css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='css/font-awesome.min.css')
+    .alert-{{alert.severity}}.dashboard-notice(ng-cloak='', ng-repeat='alert in dashAlerts.list', ng-show='$last')
+      button.close(type='button', ng-click='dashAlerts.clear(alert)', style='padding-right:50px') &times;
+      strong {{alert.title}}
+      span(ng-bind-html='alert.text')
+      .pull-right.small(style='padding-right:10px')  {{$index + 1}} alert(s) 
+    .navbar.navbar-static-top(ng-cloak='')
+      .navbar-inner
+        .container-fluid
+          span.brand
+            img(src='img/small.png', bs-tooltip="'Kibana '+(kbnVersion=='@REV@'?'master':kbnVersion)", data-placement='bottom')
+            |  {{dashboard.current.title}}
+          ul.nav.pull-right(ng-controller='dashLoader', ng-init='init()', ng-include="'app/partials/dashLoader.html'")
+    div(ng-cloak='', ng-view='')

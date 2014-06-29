@@ -1,0 +1,49 @@
+doctype html
+//if IE 7
+  html#ng-app.no-js.lt-ie9.lt-ie8(ng-app='')  
+//if IE 8
+  html#ng-app.no-js.lt-ie9(ng-app='')  
+// [if gt IE 8] <!
+html.no-js()
+  // <![endif]
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+    // build:css styles/vendor.css
+    // bower:css
+    // link(rel='stylesheet', href='bower_components/sass-bootstrap/dist/css/bootstrap.css')
+    link(href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic', rel='stylesheet', type='text/css')
+
+    link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.min.css')
+    // endbower
+    // endbuild
+    // build:css({.tmp,app}) styles/main.css
+    link(rel='stylesheet', href='styles/main.css')
+    // endbuild
+    script(src='bower_components/requirejs/require.js', data-main='scripts/main.js')
+  body#app(ng-app='vanApp', custom-background='')
+    //if lt IE 7
+      p.browsehappy
+        | You are using an 
+        strong outdated
+        |  browser. Please 
+        a(href='http://browsehappy.com/') upgrade your browser
+        |  to improve your experience.
+    // Add your site or application content here
+    div(ng-controller='MainCtrl')
+      .no-print(ng-hide='isSpecificPage()', ng-cloak='')
+        section#header.top-header(ng-include="'views/layout/header.html'")
+        aside#nav-container(ng-include="'views/layout/nav.html'")
+      .view-container
+          section#content.animate-fade-up(ng-view='')
+    //if lt IE 9
+      script(src='bower_components/es5-shim/es5-shim.js')
+      script(src='bower_components/json3/lib/json3.min.js')
+
+    //script(src='bower_components/jquery/dist/jquery.js')
+    //script(src='bower_components/jquery.slimscroll/jquery.slimscroll.min.js')

@@ -13,6 +13,11 @@ define(['angular', 'ui-bootstrap', 'layout/all']/*deps*/, function (angular)/*in
               .when('/', {
                   redirectTo: '/dashboard'
               })
+
+              .when('/dashboard1', {
+                  templateUrl: 'index.html'
+              })
+
               .when('/dashboard', {
                   templateUrl: 'views/dashboard.html'
               })

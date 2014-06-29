@@ -1,0 +1,95 @@
+html
+  body
+    style.
+      .noarrow>a:after {
+      display: none !important;
+      }
+    li(ng-repeat='pulldown in dashboard.current.nav', ng-controller='PulldownCtrl', ng-show='pulldown.enable')
+      kibana-simple-panel(type='pulldown.type', ng-cloak='')
+    li(ng-if='dashboard.current.loader.show_home !== false')
+      a(bs-tooltip="'Goto saved default'", data-placement='bottom', href='#/dashboard')
+        i.icon-home
+    li.dropdown(ng-show="showDropdown('load')")
+      a.dropdown-toggle(href='#', bs-tooltip="'Load'", data-placement='bottom', data-toggle='dropdown', ng-click="elasticsearch_dblist('title:'+elasticsearch.query+'*')")
+        i.icon-folder-open
+      ul.dropdown-menu(style='padding:10px')
+        li(ng-if='dashboard.current.loader.load_elasticsearch != false')
+          form.nomargin
+            input(type='text', ng-model='elasticsearch.query', ng-change="elasticsearch_dblist('title:'+elasticsearch.query+'*')", placeholder='Type to filter')
+          h6(ng-hide='elasticsearch.dashboards.length') No dashboards matching your query found
+          table.table.table-condensed.table-striped
+            tr(bindonce='', ng-repeat="row in elasticsearch.dashboards | orderBy:['_id']")
+              td
+                a(confirm-click='elasticsearch_delete(row._id)', confirmation='Are you sure you want to delete the {{row._id}} dashboard')
+                  i.icon-remove
+              td
+                a(href='#/dashboard/elasticsearch/{{row._id}}', bo-text='row._id')
+              td
+                a
+                  i.icon-share(ng-click="share = dashboard.share_link(row._id,'elasticsearch',row._id)", bs-modal="'app/partials/dashLoaderShare.html'")
+        li.dropdown-submenu.noarrow(ng-show='dashboard.current.loader.load_gist || dashboard.current.loader.load_local')
+          a.small(tabindex='-1', style='padding:0')
+            i.icon-caret-left
+            |  Advanced
+          ul.dropdown-menu(style='padding:10px')
+            li(ng-show='dashboard.current.loader.load_local')
+              h5
+                | Local File 
+                tip Load dashboard JSON layout from file
+              form
+                input#dashupload(type='file', dash-upload='')
+                br
+            li(ng-show='dashboard.current.loader.load_gist')
+              h5
+                | Gist 
+                tip Enter a gist number or url
+              form
+                input(type='text', ng-model='gist.url', placeholder='Gist number or URL')
+                br
+                button.btn(ng-click='gist_dblist(dashboard.gist_id(gist.url))', ng-show='dashboard.is_gist(gist.url)')
+                  i.icon-github-alt
+                  |  Get gist:{{gist.url | gistid}}
+                h6(ng-show='gist.files.length')
+                  | Dashboards in gist:{{gist.url | gistid}} 
+                  small click to load
+                h6(ng-hide='gist.files.length || !gist.url.length') No gist dashboards found
+                table.table.table-condensed.table-striped
+                  tr(ng-repeat='file in gist.files')
+                    td
+                      a(ng-click='dashboard.dash_load(file)') {{file.title}}
+    li.dropdown(ng-show="showDropdown('save')")
+      a.dropdown-toggle(href='#', bs-tooltip="'Save'", data-placement='bottom', data-toggle='dropdown')
+        i.icon-save
+      ul.dropdown-menu(style='padding:10px')
+        li(ng-show='dashboard.current.loader.save_elasticsearch != false')
+          form.input-prepend.nomargin
+            button.btn(ng-click="elasticsearch_save('dashboard')")
+              i.icon-save
+            input.input-medium(ng-model='dashboard.current.title', type='text')
+        li.dropdown-submenu.noarrow(ng-show='dashboard.current.loader.save_local != false || dashboard.current.loader.save_gist != false || dashboard.current.loader.save_default != false')
+          a.small(tabindex='-1', style='padding:0')
+            i.icon-caret-left
+            |  Advanced
+          ul.dropdown-menu
+            li(ng-show='dashboard.current.loader.save_default != false')
+              a.link(ng-click='set_default()') Save as Home
+            li(ng-show='dashboard.current.loader.save_default != false')
+              a.link(ng-click='purge_default()') Reset Home
+            li(ng-show='dashboard.current.loader.save_local != false')
+              a.link(ng-click='dashboard.to_file()') Export schema
+            li(ng-show='dashboard.current.loader.save_gist', style='margin:10px')
+              h6 Gist
+              form.input-append
+                input.input-medium(placeholder='Title', type='text', ng-model='gist.title')
+                button.btn(ng-click='save_gist()')
+                  i.icon-github-alt
+              br
+              small(ng-show='gist.last')
+                | Last gist: 
+                a(target='_blank', href='{{gist.last}}') {{gist.last}}
+    li(ng-show="showDropdown('share')")
+      a(bs-tooltip="'Share'", data-placement='bottom', ng-click="elasticsearch_save('temp',dashboard.current.loader.save_temp_ttl)", bs-modal="'app/partials/dashLoaderShare.html'")
+        i.icon-share
+    li(ng-show='dashboard.current.editable', bs-tooltip="'Configure dashboard'", data-placement='bottom')
+      a.link(config-modal='app/partials/dasheditor.html', kbn-model='dashboard')
+        i.icon-cog

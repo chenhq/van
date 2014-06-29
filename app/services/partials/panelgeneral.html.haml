@@ -1,0 +1,21 @@
+.editor-row
+  .section
+    %strong {{panelMeta.status}}
+    \//
+    %span{"ng-bind-html" => "panelMeta.description"}
+.editor-row
+  .section
+    .editor-option
+      %label.small Title
+      %input.input-medium{"ng-model" => "panel.title", :type => "text"}/
+    .editor-option{"ng-hide" => "panel.sizeable == false"}
+      %label.small Span
+      %select.input-mini{"ng-model" => "panel.span", "ng-options" => "f for f in [1,2,3,4,5,6,7,8,9,10,11,12]"}
+    .editor-option
+      %label.small Editable
+      %input{"ng-checked" => "panel.editable", "ng-model" => "panel.editable", :type => "checkbox"}/
+    .editor-option{"ng-show" => "!_.isUndefined(panel.spyable)"}
+      %label.small
+        Inspect
+        %i.icon-question-sign{"bs-tooltip" => "'Allow query reveal via <i class=icon-info-sign></i>'"}
+      %input{"ng-checked" => "panel.spyable", "ng-model" => "panel.spyable", :type => "checkbox"}/

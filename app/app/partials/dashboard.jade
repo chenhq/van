@@ -1,0 +1,51 @@
+html
+  body
+    // is there a better way to repeat without actually affecting the page?
+    nil(ng-repeat='pulldown in dashboard.current.pulldowns', ng-controller='PulldownCtrl', ng-show='pulldown.enable')
+      .top-row-close.pointer.pull-left(ng-class='pulldownTabStyle($index)', ng-click='toggle_pulldown(pulldown);dismiss();', bs-tooltip="'Toggle '+pulldown.type", data-placement='bottom')
+        span.small {{pulldown.type}}
+        i.small(ng-class="{'icon-caret-left':pulldown.collapse,'icon-caret-right':!pulldown.collapse}")
+        i.small.icon-star(ng-show='row.notice && pulldown.collapse')
+      .clearfix.bgNav(ng-hide='pulldown.collapse')
+      .top-row-open(ng-hide='pulldown.collapse')
+        kibana-simple-panel(type='pulldown.type', ng-cloak='')
+    .clearfix.bgNav
+    .container-fluid.main
+      div
+        .kibana-container.container
+          // Rows
+          .kibana-row(ng-controller='RowCtrl', ng-repeat='(row_name, row) in dashboard.current.rows', ng-style='row_style(row)')
+            .row-control
+              div(style='padding:0px;margin:0px;position:relative;')
+                .row-close(ng-show='row.collapse', data-placement='bottom')
+                  span.row-button.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row')
+                    i.icon-cog.pointer(bs-tooltip="'Configure row'", data-placement='right', ng-show='row.editable')
+                  span.row-button.bgPrimary(ng-click='toggle_row(row)', ng-show='row.collapsable')
+                    i.icon-caret-left.pointer(bs-tooltip="'Expand row'", data-placement='right', ng-show='row.collapsable')
+                  span.row-button.row-text(ng-click='toggle_row(row)', ng-class="{'pointer':row.collapsable}") {{row.title || &apos;Row &apos;+$index}}
+                .row-open(style='text-align:center', ng-show='!row.collapse')
+                  .row-tab.bgPrimary(ng-show='row.collapsable', ng-click='toggle_row(row)')
+                    i.icon-caret-right(bs-tooltip="'Collapse row'", data-placement='right')
+                    br
+                  .row-tab.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')
+                    i.icon-cog.pointer(bs-tooltip="'Configure row'", data-placement='right')
+                    br
+                  .bgSuccess.row-tab(ng-click='editor.index = 2', config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')
+                    i.icon-plus-sign(bs-tooltip="'Add Panel'", data-placement='right')
+                    br
+              div(style='padding-top:0px', ng-if='!row.collapse')
+                // All the panels in the row
+                .panel.nospace(ng-repeat='(name, panel) in row.panels|filter:isPanel', ng-cloak='', ng-hide='panel.hide', kibana-panel='', type='panel.type', resizable='', ng-class="{'dragInProgress':dashboard.panelDragging}", style='position:relative', ng-style="{'width':!panel.span?'100%':((panel.span/1.2)*10)+'%'}", data-drop='true', ng-model='row.panels', data-jqyoui-options='', jqyoui-droppable="{index:$index,mutate:false,onDrop:'panelMoveDrop',onOver:'panelMoveOver(true)',onOut:'panelMoveOut'}")
+                // A suggestion filler panel that appears when a panel is being dragged, but there is no panels in the row to drop it on
+                .panel.panel-filler(ng-show='dashboard.panelDragging && row.panels.length == 0', style='', ng-class="{'dragInProgress':dashboard.panelDragging}", ng-style='{height:row.height}', data-drop='true', ng-model='row.panels', data-jqyoui-options='', jqyoui-droppable="{index:row.panels.length,mutate:false,onDrop:'panelMoveDrop',onOver:'panelMoveOver',onOut:'panelMoveOut'}")
+                  h1 Drop here to add to this row
+                  |               Or drop on top of any other panel to insert in that row
+                span(config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable && !dashboard.panelDragging')
+                  span.btn.btn-mini(ng-click='editor.index = 2', style='margin-top: 3px; margin-left: 5px', ng-show='row.panels.length==0') Add panel to empty row
+                .clearfix
+          .row-fluid(ng-show='dashboard.current.editable')
+            .span12(style='text-align:right;')
+              span.pointer.btn.btn-mini.row-add-button(config-modal='app/partials/dasheditor.html', kbn-model='dashboard')
+                span(ng-click='editor.index = 2')
+                  i.icon-plus-sign
+                  |  ADD A ROW

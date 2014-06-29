@@ -1,0 +1,2 @@
+<html><body><div class="modal-header"><button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button><h3>Last Elasticsearch Query</h3></div><div class="modal-body"><div><pre>\ncurl -XGET '{{config.elasticsearch}}/{{dashboard.indices|stringify}}/_search?pretty' -d '{{inspector}}'
+</pre></div></div><div class="modal-footer"><button type="button" ng-click="dismiss()" class="btn btn-success">Close</button></div></body></html>

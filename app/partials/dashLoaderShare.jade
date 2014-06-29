@@ -1,0 +1,12 @@
+html
+  body
+    .modal-header
+      button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+      h3
+        | {{share.title}} 
+        small shareable link
+    .modal-body
+      label Share this dashboard with this URL
+      input(ng-model='share.link', type='text', style='width:90%', onclick='this.select()', onfocus='this.select()', ng-change='share = dashboard.share_link(share.title,share.type,share.id)')
+    .modal-footer
+      button.btn.btn-success(type='button', ng-click="dismiss();$broadcast('render')") Close
