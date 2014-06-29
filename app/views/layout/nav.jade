@@ -3,62 +3,80 @@ html
         #nav-wrapper
             ul#nav(slim-scroll='', collapse-nav='', highlight-active='')
                 li
-                    a(href='#/dashboard')
+                    a(href='#/')
                         i.fa.fa-dashboard
-                        span Dashboard
+                        span 监控面板
                 li
-                    a(href='#/alert-mngm')
-                        i.fa.fa-magic
-                        span Alert Management
+                    a(href='#/alert')
+                        i.fa.fa-bell
+                        span 告警管理
                     ul
-                        li
-                            a(href='#/alert/define')
-                                i.fa.fa-caret-right
-                                span Define
+
                         li
                             a(href='#/alert/find')
                                 i.fa.fa-caret-right
-                                span Find
+                                span 告警处理
+                        li
+                            a(href='#/alert/define')
+                                i.fa.fa-caret-right
+                                span 告警定义
                 li
-                    a(href='#/log-mngm')
-                        i.fa.fa-magic
-                        span Log Management
+                    a(href='#/log')
+                        i.fa.fa-archive
+                        span 日志管理
                     ul
                         li
                             a(href='#/log/host-group')
                                 i.fa.fa-caret-right
-                                span Host Group
+                                span 日志检索和定义
                         li
                             a(href='#/log/group')
                                 i.fa.fa-caret-right
-                                span Log Group
+                                span 日志组管理
                         li
                             a(href='#/log/format')
                                 i.fa.fa-caret-right
-                                span Format Define
-                        li
-                            a(href='#/log/api')
-                                i.fa.fa-caret-right
-                                span API
+                                span 日志格式定义
                 li
-                    a(href='#/log-mngm')
-                        i.fa.fa-magic
-                        span Privilege Management
+                    a(href='#/log')
+                        i.fa.fa-folder
+                        span 项目定义
+                    ul
+                        li
+                            a(href='#/log/host-group')
+                                i.fa.fa-caret-right
+                                span 设备和组管理
+                li
+                    a(href='#/privileage')
+                        i.fa.fa-user
+                        span 权限管理
                     ul
                         li
                             a(href='#/privilege/user-group')
                                 i.fa.fa-caret-right
-                                span User & Group
+                                span 用户和组
                         li
                             a(href='#/privilege/log-group')
                                 i.fa.fa-caret-right
-                                span Log Privilege
+                                span 访问控制
+                        li
+                            a(href='#/log/api')
+                                i.fa.fa-caret-right
+                                span Token管理
                 li
-                    a(href='#/conf-assistant')
-                        i.fa.fa-magic
-                        span Configuration Assistant
+                    a(href='#/conf')
+                        i.fa.fa-h-square
+                        span 配置助手
                     ul
                         li
                             a(href='#/conf/wizard')
                                 i.fa.fa-caret-right
-                                span Configuration Wizard
+                                span 配置向导
+                        li
+                            a(href='#/conf/wizard')
+                                i.fa.fa-caret-right
+                                span 帮助
+                        li
+                            a(href='#/conf/wizard')
+                                i.fa.fa-caret-right
+                                span 常见问题

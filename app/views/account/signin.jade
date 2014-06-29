@@ -1,0 +1,41 @@
+html
+  body
+    .page-signin
+      .signin-header
+        .container.text-center
+          section.logo
+            a(href='#/') {{main.brand}}
+      .signin-body
+        .container
+          .form-container
+            section.row.signin-social.text-center
+              a.btn-icon.btn-icon-sm.bg-twitter(href='javascript:;')
+                i.fa.fa-twitter
+              .space
+              a.btn-icon.btn-icon-sm.bg-facebook(href='javascript:;')
+                i.fa.fa-facebook
+              .space
+              a.btn-icon.btn-icon-sm.bg-google-plus(href='javascript:;')
+                i.fa.fa-google-plus
+            span.line-thru OR
+            form.form-horizontal
+              fieldset
+                .form-group
+                  .input-group.input-group-lg
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-envelope
+                    input.form-control(type='email', placeholder='Email')
+                .form-group
+                  .input-group.input-group-lg
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-lock
+                    input.form-control(type='password', placeholder='password')
+                .form-group
+                .form-group
+                  a.btn.btn-primary.btn-lg.btn-block(href='#/') Log in
+            section
+              p.text-center
+                a(href='#/pages/forgot') Forgot your password?
+              p.text-center.text-muted.text-small
+                | Don&apos;t have an account yet? 
+                a(href='#/pages/signup') Sign up

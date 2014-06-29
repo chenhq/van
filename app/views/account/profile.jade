@@ -1,0 +1,115 @@
+html
+  body
+    .page.page-profile
+      .row
+        .col-md-6
+          .panel.panel-profile
+            .panel-heading.text-center.bg-info
+              img.img-circle.img80_80(alt='', src='images/g1.jpg')
+              h3 {{main.name}}
+              p Project Manager
+            .list-justified-container
+              ul.list-justified.text-center
+                li
+                  p.size-h3 679
+                  p.text-muted Tweets
+                li
+                  p.size-h3 575
+                  p.text-muted Followers
+                li
+                  p.size-h3 23
+                  p.text-muted Following
+          .row
+            .col-sm-6
+              section.panel.panel-box
+                .panel-top.bg-facebook
+                  .divider.divider
+                  i.fa.fa-facebook.size-h1
+                  .divider.divider
+                .list-justified-container
+                  ul.list-justified.text-center
+                    li
+                      p.size-h3 575
+                      p.text-muted Followers
+                    li
+                      p.size-h3 23
+                      p.text-muted Following
+            .col-sm-6
+              section.panel.panel-box
+                .panel-top.bg-twitter
+                  .divider.divider
+                  i.fa.fa-twitter.size-h1
+                  .divider.divider
+                .list-justified-container
+                  ul.list-justified.text-center
+                    li
+                      p.size-h3 575
+                      p.text-muted Followers
+                    li
+                      p.size-h3 23
+                      p.text-muted Following
+        .col-md-6
+          .row
+            .col-sm-6
+              .panel.mini-box
+                span.box-icon.bg-danger
+                  i.fa.fa-film
+                .box-info
+                  p.size-h2 39
+                  p.text-muted Amazing Films
+            .col-sm-6
+              .panel.mini-box
+                span.box-icon.bg-warning
+                  i.fa.fa-camera
+                .box-info
+                  p.size-h2 63
+                  p.text-muted Wonderful Photos
+          .row
+            .col-sm-6
+              .panel.mini-box
+                span.box-icon.bg-success
+                  i.fa.fa-bookmark-o
+                .box-info
+                  p.size-h2 55
+                  p.text-muted New Collections
+            .col-sm-6
+              .panel.mini-box
+                span.box-icon.bg-info
+                  i.fa.fa-check
+                .box-info
+                  p.size-h2 34
+                  p.text-muted Tasks Finised
+          .panel.panel-default
+            .panel-heading
+              strong
+                span.glyphicon.glyphicon-th
+                |  Profile Info
+            .panel-body
+              .media
+                .media-body
+                  ul.list-unstyled.list-info
+                    li
+                      span.icon.glyphicon.glyphicon-user
+                      label User name
+                      |                                     {{main.name}}
+                    li
+                      span.icon.glyphicon.glyphicon-envelope
+                      label Email
+                      |                                     name@example.com
+                    li
+                      span.icon.glyphicon.glyphicon-home
+                      label Address
+                      |                                     Street 123, Avenue 45, Country
+                    li
+                      span.icon.glyphicon.glyphicon-earphone
+                      label Contact
+                      |                                     (+012) 345 6789
+                    li
+                      span.icon.glyphicon.glyphicon-flag
+                      label Nationality
+                      |                                     Australia
+      .panel.panel-default
+        .panel-heading
+          h3.panel-title Line Chart
+        .panel-body(data-ng-controller='flotChartCtrl')
+          div(data-flot-chart='', data-data='line1.data', data-options='line1.options', style='width: 100%; height: 300px;')

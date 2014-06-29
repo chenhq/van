@@ -5,7 +5,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                angular.element(element).slimScroll({
+                element.slimScroll({
                     height: attrs.scrollHeight || '100%'
                 });
             }
@@ -35,7 +35,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
                         app.removeClass('nav-min');
                     }
                 };
-                var resizeTimer;
+                // var resizeTimer;
                 $window.on('resize', function () {
                     clearTimeout(resizeTimer);
                     resizeTimer = setTimeout(updateClass, 300);
@@ -69,7 +69,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
     });
 
 
-    dirs.directive('hightlightActive', [function () {
+    dirs.directive('highlightActive', [function () {
         return {
             restrict: "A",
             controller: ['$scope', '$element', '$attrs', '$location', function ($scope, $element, $attrs, $location) {
@@ -97,8 +97,9 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
 
                 $scope.$watch(path, function (newVal, oldVal) {
                     if (newVal === oldVal) {
-                        return highlightActive(links, $location.path());
+                        return;
                     }
+                    return highlightActive(links, $location.path());
                 })
             }]
         }
@@ -114,7 +115,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
                 var $listsRest = element.children('li').not($lists);
                 var $aRest = $listsRest.children('a');
 
-                var app = $('app');
+                var app = $('#app');
 
                 $a.on('click', function(event) {
                     if (app.hasClass('nav-min')) {
@@ -134,7 +135,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
                 });
 
                 //  reset collapse NAV, sub Ul should slideUp
-                scope.$on('minNav:enable', function(event) {
+                scope.$on('minNav:enabled', function(event) {
                     $lists.removeClass('open').find('ul').slideUp();
                 })
 
@@ -142,4 +143,49 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
         }
     }]);
 
+    dirs.directive('customBackground', function() {
+        return {
+            restrict: 'A',
+            controller: [
+                '$scope',
+                '$element',
+                '$location',
+                function($scope, $element, $location) {
+                    var path = function() {
+                        return $location.path();
+                    }
+
+                    var addBg = function(path) {
+                        $element.removeClass('body-name body-special body-task body-lock');
+
+                        // add certain class based on path
+                        switch (path) {
+                            case '/':
+                                return $element.addClass('body-home');
+                            case '/error/404':
+                            case '/error/500':
+                            case '/account/signin':
+                            case '/account/signup':
+                            case '/account/forgot-password':
+                                return $element.addClass('body-special');
+                            case '/account/lock-screen':
+                                return $element.addClass('body-special body-lock');
+                            case '/tasks':
+                                return $element.addClass('body-tasks');
+                        }
+
+                    };
+
+                    addBg($location.path());
+
+                    $scope.$watch(path, function(newVal, oldVal) {
+                        if (newVal === oldVal) {
+                            return;
+                        }
+                        addBg($location.path());
+                    })
+                }
+            ]
+        }
+    });
 });
