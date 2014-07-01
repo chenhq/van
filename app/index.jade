@@ -14,10 +14,15 @@ html.no-js
     meta(name='viewport', content='width=device-width')
     title iHunter {{dashboard.current.title ? &quot; - &quot;+dashboard.current.title : &quot;&quot;}}
     link(rel='stylesheet', href='styles/main.css')
-    link(rel='stylesheet', href='css/bootstrap.light.min.css', title='Light')
-    link(rel='stylesheet', href='css/timepicker.css')
-    link(rel='stylesheet', href='css/animate.min.css')
-    link(rel='stylesheet', href='css/normalize.min.css')
+    link(rel='stylesheet', href='bower_components/normalize.css/normalize.css')
+    link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.min.css')
+
+    // mod by chq
+    // link(rel='stylesheet', href='css/bootstrap.light.min.css', title='Light')
+
+    //link(rel='stylesheet', href='css/timepicker.css')
+    //link(rel='stylesheet', href='css/animate.min.css')
+    //link(rel='stylesheet', href='css/normalize.min.css')
     // load the root require context
     script(src='vendor/require/require.js')
     script(src='components/require.config.js')
@@ -30,14 +35,16 @@ html.no-js
         center
           h3 You must enable javascript to use iHunter
     // <link rel="stylesheet" ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css">
-    link(rel='stylesheet', ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css")
-    link(rel='stylesheet', href='css/bootstrap-responsive.min.css')
-    link(rel='stylesheet', href='css/font-awesome.min.css')
+    // mod by chq
+    //link(rel='stylesheet', ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css")
+    //link(rel='stylesheet', href='css/bootstrap-responsive.min.css')
+    //link(rel='stylesheet', href='css/font-awesome.min.css')
     div(ng-controller='MainCtrl')
        .no-print(ng-hide='isSpecificPage()', ng-cloak='')
           section#header.top-header(ng-include="'views/layout/header.html'")
           aside#nav-container(ng-include="'views/layout/nav.html'")
        .view-container
+          // div sfsdjfsdfkj
           //section#content.animate-fade-up(ng-view='')
           //
           //div(class='alert-{{alert.severity}} dashboard-notice',ng-cloak='', ng-repeat='alert in dashAlerts.list', ng-show='$last')
@@ -52,8 +59,7 @@ html.no-js
                  img(src='img/small.png', bs-tooltip="'Kibana '+(kbnVersion=='@REV@'?'master':kbnVersion)", data-placement='bottom')
                  |  {{dashboard.current.title}}
                 ul.nav.pull-right(ng-controller='dashLoader', ng-init='init()', ng-include="'app/partials/dashLoader.html'")
-          //div(ng-cloak='', ng-view='')
-
+          section#content.animate-fade-up(ng-view='', ng-cloak='')
         //if lt IE 9
           script(src='bower_components/es5-shim/es5-shim.js')
           script(src='bower_components/json3/lib/json3.min.js')

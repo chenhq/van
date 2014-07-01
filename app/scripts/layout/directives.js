@@ -35,7 +35,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
                         app.removeClass('nav-min');
                     }
                 };
-                // var resizeTimer;
+                var resizeTimer;
                 $window.on('resize', function () {
                     clearTimeout(resizeTimer);
                     resizeTimer = setTimeout(updateClass, 300);
