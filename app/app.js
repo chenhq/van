@@ -13,7 +13,7 @@ define([
   'angular-dragdrop',
   'angular-cookies',
   'extend-jquery',
-  'bindonce',
+  'bindonce'
 ],
 function (angular, $, _, appLevelRequire) {
 
@@ -100,7 +100,8 @@ function (angular, $, _, appLevelRequire) {
     'ngDragDrop',
     'ngCookies',
     'kibana',
-    'pasvaz.bindonce'
+    'pasvaz.bindonce',
+    'app.layout'
   ];
 
   _.each('controllers directives factories services filters'.split(' '),
@@ -122,7 +123,11 @@ function (angular, $, _, appLevelRequire) {
   require([
     'controllers/all',
     'directives/all',
-    'filters/all'
+    'filters/all',
+    // add by chq
+    'ui-bootstrap',
+    'scripts/layout/all'
+
   ], function () {
 
     // bootstrap the app

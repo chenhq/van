@@ -1,6 +1,6 @@
 define(['angular', 'jquery.slimscroll'], function(angular) {
     'use strict';
-    var dirs = angular.module('vanApp.layout.directives', []);
+    var dirs = angular.module('app.layout.directives', []);
     dirs.directive('slimScroll', function () {
         return {
             restrict: 'A',

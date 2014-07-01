@@ -48,6 +48,16 @@ require.config({
     numeral:                  '../vendor/numeral',
     jsonpath:                 '../vendor/jsonpath',
     elasticjs:                '../vendor/elasticjs/elastic-angular-client',
+
+    // add by chq
+    //'angular-route': '../bower_components/angular-route/angular-route',
+    //'angular-resource': '../bower_components/angular-resource/angular-resource',
+    //'sass-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
+    //'angular-scenario': '../bower_components/angular-scenario/angular-scenario',
+    //'angular-mocks': '../bower_components/angular-mocks/angular-mocks',
+    'jquery.slimscroll': '../bower_components/jquery.slimscroll/jquery.slimscroll',
+    //'font-awesome': '../bower_components/font-awesome/fonts/*',
+    'ui-bootstrap': '../bower_components/angular-bootstrap/ui-bootstrap-tpls'
   },
   shim: {
     angular: {
@@ -97,7 +107,17 @@ require.config({
     timepicker:             ['jquery', 'bootstrap'],
     datepicker:             ['jquery', 'bootstrap'],
 
-    elasticjs:              ['angular', '../vendor/elasticjs/elastic']
+    elasticjs:              ['angular', '../vendor/elasticjs/elastic'],
+
+    // add by chq
+    'ui-bootstrap':         ['angular'],
+    'jquery.slimscroll': {
+      deps: [
+        'jquery',
+        'angular'
+      ],
+      exports: 'jQuery.fn.slimScroll'
+    }
   },
   waitSeconds: 60,
 });
