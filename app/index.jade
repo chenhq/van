@@ -32,7 +32,7 @@ html.no-js
     link(rel='stylesheet', ng-href="css/bootstrap.{{dashboard.current.style||'dark'}}.min.css")
     link(rel='stylesheet', href='css/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='css/font-awesome.min.css')
-    .alert-{{alert.severity}}.dashboard-notice(ng-cloak='', ng-repeat='alert in dashAlerts.list', ng-show='$last')
+    div(class='alert-{{alert.severity}} dashboard-notice',ng-cloak='', ng-repeat='alert in dashAlerts.list', ng-show='$last')
       button.close(type='button', ng-click='dashAlerts.clear(alert)', style='padding-right:50px') &times;
       strong {{alert.title}}
       span(ng-bind-html='alert.text')

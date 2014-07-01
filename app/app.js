@@ -133,6 +133,7 @@ function (angular, $, _, appLevelRequire) {
         angular.bootstrap(document, apps_deps)
           .invoke(['$rootScope', function ($rootScope) {
             _.each(pre_boot_modules, function (module) {
+              var old = _.cloneDeep(module);
               _.extend(module, register_fns);
             });
             pre_boot_modules = false;
