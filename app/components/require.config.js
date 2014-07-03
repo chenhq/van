@@ -27,7 +27,8 @@ require.config({
 
     lodash:                   'components/lodash.extended',
     'lodash-src':             '../vendor/lodash',
-    bootstrap:                '../vendor/bootstrap/bootstrap',
+    // bootstrap:                '../vendor/bootstrap/bootstrap',
+    // bootstrap:                '../bower_components/twbs-bootstrap-sass/assets/javascripts/bootstrap',
 
     jquery:                   '../vendor/jquery/jquery-1.8.0',
     'jquery-ui':              '../vendor/jquery/jquery-ui-1.10.3',
@@ -64,11 +65,11 @@ require.config({
       deps: ['jquery','config'],
       exports: 'angular'
     },
-
+    /**
     bootstrap: {
       deps: ['jquery']
     },
-
+     */
     modernizr: {
       exports: 'Modernizr'
     },
@@ -102,10 +103,10 @@ require.config({
     'angular-route':        ['angular'],
     'angular-touch':        ['angular'],
     'bindonce':             ['angular'],
-    'angular-strap':        ['angular', 'bootstrap','timepicker', 'datepicker'],
+    'angular-strap':        ['angular', 'ui-bootstrap','timepicker', 'datepicker'],
 
-    timepicker:             ['jquery', 'bootstrap'],
-    datepicker:             ['jquery', 'bootstrap'],
+    timepicker:             ['jquery', 'ui-bootstrap'],
+    datepicker:             ['jquery', 'ui-bootstrap'],
 
     elasticjs:              ['angular', '../vendor/elasticjs/elastic'],
 

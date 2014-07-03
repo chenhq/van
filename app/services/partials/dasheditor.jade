@@ -1,0 +1,166 @@
+html
+  body
+    .modal-body
+      .pull-right.editor-title Dashboard settings
+      div(ng-model='editor.index', bs-tabs='', style='text-transform:capitalize;')
+        div(ng-repeat="tab in ['General','Index','Rows','Controls']", data-title='{{tab}}')
+        div(ng-repeat='tab in dashboard.current.nav|editable', data-title='{{tab.title || tab.type}}')
+      div(ng-if='editor.index == 0')
+        .editor-row
+          .section
+            .editor-option
+              label.small Title
+              input.input-large(type='text', ng-model='dashboard.current.title')
+            .editor-option
+              label.small Style
+              select.input-small(ng-model='dashboard.current.style', ng-options="f for f in ['dark','light']")
+            .editor-option
+              label.small  Editable 
+              input(type='checkbox', ng-model='dashboard.current.editable', ng-checked='dashboard.current.editable')
+            .editor-option
+              label.small
+                | Hints 
+                tip Show &apos;Add panel&apos; hints in empty spaces
+              input(type='checkbox', ng-model='dashboard.current.panel_hints', ng-checked='dashboard.current.panel_hints')
+      div(ng-if='editor.index == 1')
+        .editor-row
+          .section
+            h5 Index Settings
+            .row-fluid(ng-show="dashboard.current.index.interval != 'none'")
+              .editor-option
+                p.small
+                  | Time stamped indices use your selected time range to create a list of
+                  | indices that match a specified timestamp pattern. This can be very
+                  | efficient for some data sets (eg, logs) For example, to match the
+                  | default logstash index pattern you might use
+                  code [logstash-]YYYY.MM.DD
+                  | . The [] in &quot;[logstash-]&quot; are
+                  |               important as they instruct Kibana not to treat those letters as a
+                  |               pattern. You may also specify multiple indices by seperating them with a comma(,).
+                  |               For example 
+                  code [web-]YYYY.MM.DD,[mail-]YYYY.MM.DD
+                  |               Please also note that indices should rollover at midnight 
+                  strong UTC
+                  | .
+                p.small
+                  | See 
+                  a(href='http://momentjs.com/docs/#/displaying/format/') http://momentjs.com/docs/#/displaying/format/
+                  |               for documentation on date formatting.
+        .editor-row
+          .section
+            .editor-option
+              h6 Timestamping
+              select.input-small(ng-model='dashboard.current.index.interval', ng-options="f for f in ['none','hour','day','week','month','year']")
+            .editor-option(ng-show="dashboard.current.index.interval != 'none'")
+              h6
+                | Index pattern 
+                small Absolutes in []
+              input.input-large(type='text', ng-model='dashboard.current.index.pattern')
+            .editor-option(ng-show="dashboard.current.index.interval != 'none'")
+              h6
+                | Failover 
+                i.icon-question-sign(bs-tooltip="'If no indices match the pattern, failover to default index *NOT RECOMMENDED*'")
+              input(type='checkbox', ng-model='dashboard.current.failover', ng-checked='dashboard.current.failover')
+            .editor-option(ng-show="dashboard.current.failover || dashboard.current.index.interval == 'none'")
+              h6
+                | Default Index 
+                small(ng-show="dashboard.current.index.interval != 'none'") If index not found
+              input.input-medium(type='text', ng-model='dashboard.current.index.default')
+            .editor-option
+              h6
+                | Preload Fields 
+                i.icon-question-sign(bs-tooltip="'Preload available fields for the purpose of autocomplete. Turn this off if you have many fields'")
+              input(type='checkbox', ng-model='dashboard.current.index.warm_fields', ng-checked='dashboard.current.index.warm_fields')
+      div(ng-if='editor.index == 2')
+        .row-fluid
+          .span8
+            h4 Rows
+            table.table.table-striped
+              thead
+                th(width='1%')
+                th(width='1%')
+                th(width='1%')
+                th(width='97%') Title
+              tr(ng-repeat='row in dashboard.current.rows')
+                td
+                  i.pointer.icon-arrow-up(ng-click='_.move(dashboard.current.rows,$index,$index-1)', ng-hide='$first')
+                td
+                  i.pointer.icon-arrow-down(ng-click='_.move(dashboard.current.rows,$index,$index+1)', ng-hide='$last')
+                td
+                  i.pointer.icon-remove(ng-click='dashboard.current.rows = _.without(dashboard.current.rows,row)')
+                td {{row.title||&apos;Untitled&apos;}}
+          .span4
+            h4 Add Row
+            label.small Title
+            input.input-medium(type='text', ng-model='row.title', placeholder='New row')
+            label.small Height
+            input.input-mini(type='text', ng-model='row.height')
+        .row-fluid
+      div(ng-if='editor.index == 3', ng-controller='dashLoader')
+        .editor-row
+          .section
+            h5 Save to
+            .editor-option
+              label.small Export
+              input(type='checkbox', ng-model='dashboard.current.loader.save_local', ng-checked='dashboard.current.loader.save_local')
+            .editor-option
+              label.small Browser
+              input(type='checkbox', ng-model='dashboard.current.loader.save_default', ng-checked='dashboard.current.loader.save_default')
+            .editor-option
+              label.small
+                | Gist 
+                tip
+                  | Requires your domain to be OAUTH registered with Github
+                  tip
+              input(type='checkbox', ng-model='dashboard.current.loader.save_gist', ng-checked='dashboard.current.loader.save_gist')
+            .editor-option
+              label.small Elasticsearch
+              input(type='checkbox', ng-model='dashboard.current.loader.save_elasticsearch', ng-checked='dashboard.current.loader.save_elasticsearch')
+          .section
+            h5 Load from
+            .editor-option
+              label.small Local file
+              input(type='checkbox', ng-model='dashboard.current.loader.load_local', ng-checked='dashboard.current.loader.load_local')
+            .editor-option
+              label.small Gist
+              input(type='checkbox', ng-model='dashboard.current.loader.load_gist', ng-checked='dashboard.current.loader.load_gist')
+            .editor-option
+              label.small Elasticsearch
+              input(type='checkbox', ng-model='dashboard.current.loader.load_elasticsearch', ng-checked='dashboard.current.loader.load_elasticsearch')
+            .editor-option(ng-show='dashboard.current.loader.load.elasticsearch')
+              label.small ES list size
+              input.input-mini(type='number', ng-model='dashboard.current.loader.load_elasticsearch_size')
+          .section
+            h5 Sharing
+            .editor-option
+              label.small
+                | Allow Sharing 
+                tip Allow generating adhoc links to dashboards
+              input(type='checkbox', ng-model='dashboard.current.loader.save_temp', ng-checked='dashboard.current.loader.save_temp')
+            .editor-option(ng-show='dashboard.current.loader.save_temp')
+              label.small
+                | TTL 
+                tip Expire temp urls
+              input(type='checkbox', ng-model='dashboard.current.loader.save_temp_ttl_enable')
+            .editor-option(ng-show='dashboard.current.loader.save_temp && dashboard.current.loader.save_temp_ttl_enable')
+              label.small
+                | TTL Duration 
+                tip Elasticsearch date math, eg: 1m,1d,1w,30d  
+              input.input-small(type='text', ng-model='dashboard.current.loader.save_temp_ttl')
+      div(ng-if='editor.index == 3')
+        .editor-row
+          .section
+            h5 Pulldowns
+            .editor-option(ng-repeat='pulldown in dashboard.current.pulldowns')
+              label.small(style='text-transform:capitalize;') {{pulldown.type}}
+              input(type='checkbox', ng-model='pulldown.enable', ng-checked='pulldown.enable')
+            .editor-option(ng-repeat='pulldown in dashboard.current.nav|editable')
+              label.small(style='text-transform:capitalize;') {{pulldown.type}}
+              input(type='checkbox', ng-model='pulldown.enable', ng-checked='pulldown.enable')
+      div(ng-repeat='pulldown in dashboard.current.nav|editable', ng-controller='PulldownCtrl', ng-show='editor.index == 4+$index')
+        ng-include(ng-show='pulldown.enable', src='edit_path(pulldown.type)')
+        button.btn(ng-hide='pulldown.enable', ng-click='pulldown.enable = true') Enable the {{pulldown.type}}
+    .modal-footer
+      button.btn.btn-info(type='button', ng-click='add_row(dashboard.current,row); reset_row();', ng-show='editor.index == 2') Create Row
+      button.btn.btn-success(type='button', ng-click='editor.index=0;editSave(dashboard);dismiss();reset_panel();dashboard.refresh()') Save
+      button.btn.btn-danger(type='button', ng-click='editor.index=0;dismiss();reset_panel();dashboard.refresh()') Cancel

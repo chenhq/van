@@ -27,3 +27,87 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import "sections/content";
 @import "sections/form";
 
+
+.van-container.container {
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.row-close {
+  padding: 0;
+  margin: 5px;
+  min-height: 30px!important;
+  line-height: 30px;
+  background: #fff;
+  border: 1px solid rgba(100,100,100,0.5);
+}
+
+.row-open {
+  margin-top: 5px;
+  left: -35px;
+  position: absolute;
+  z-index: 100;
+  transition: .10s left;
+  transition-delay: .10s;
+  -webkit-transition-delay: .10s;
+}
+
+.row-open:hover {
+  left: -10px;
+}
+
+.row-tab {
+  padding: 0;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+
+.row-button {
+  width: 30px;
+  text-align: center;
+  float: left;
+  cursor: pointer;
+}
+
+.bgNav {
+  background: none repeat scroll 0 0 #080808;
+}
+.bgPrimary {
+  background: none repeat scroll 0 0 #1A8CFF;
+  color: rgba(255, 255, 255, 0.9);
+}
+.bgInfo {
+  background: none repeat scroll 0 0 #A466C2;
+  color: rgba(255, 255, 255, 0.9);
+}
+.bgSuccess {
+  background: none repeat scroll 0 0 #47CD1B;
+  color: rgba(255, 255, 255, 0.9);
+}
+.bgWarning {
+  background: none repeat scroll 0 0 #FF8432;
+  color: rgba(255, 255, 255, 0.9);
+}
+.bgDanger {
+  background: none repeat scroll 0 0 #FF1A4D;
+  color: rgba(255, 255, 255, 0.9);
+}
+.bgInverse {
+  background: none repeat scroll 0 0 #0D0D0D;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#dashboard .panel {
+  display: inline-table;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 0;
+  background: #fff;
+  border: 3px solid #eee;
+}
+
+
+

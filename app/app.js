@@ -7,13 +7,14 @@ define([
   'lodash',
   'require',
   'elasticjs',
-  'bootstrap',
+  // 'bootstrap',
   'angular-sanitize',
   'angular-strap',
   'angular-dragdrop',
   'angular-cookies',
   'extend-jquery',
-  'bindonce'
+  'bindonce',
+  'ui-bootstrap'
 ],
 function (angular, $, _, appLevelRequire) {
 
@@ -125,7 +126,7 @@ function (angular, $, _, appLevelRequire) {
     'directives/all',
     'filters/all',
     // add by chq
-    'ui-bootstrap',
+    // 'ui-bootstrap',
     'scripts/layout/all'
 
   ], function () {
