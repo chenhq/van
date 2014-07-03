@@ -56,7 +56,7 @@ html.no-js
             .navbar-inner
               .container-fluid
                 span.brand
-                 img(src='img/small.png', bs-tooltip="'Kibana '+(kbnVersion=='@REV@'?'master':kbnVersion)", data-placement='bottom')
+                 img(src='img/small.png', tooltip="'Kibana '+(kbnVersion=='@REV@'?'master':kbnVersion)", data-placement='bottom')
                  |  {{dashboard.current.title}}
                 ul.nav.pull-right(ng-controller='dashLoader', ng-init='init()', ng-include="'app/partials/dashLoader.html'")
           section#content.animate-fade-up(ng-view='', ng-cloak='')

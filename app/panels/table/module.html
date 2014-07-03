@@ -59,7 +59,7 @@
     <div bindonce ng-class="{'table-sidebar':panel.field_list}" ng-if="panel.field_list">
       <div style="{{panel.overflow}}:{{row.height}};overflow-y:auto">
 
-        <strong>Fields <i class=" icon-chevron-sign-left pointer " ng-click="panel.field_list = !panel.field_list" bs-tooltip="'Hide field list'"></i></strong><p>
+        <strong>Fields <i class=" icon-chevron-sign-left pointer " ng-click="panel.field_list = !panel.field_list" tooltip="'Hide field list'"></i></strong><p>
 
         <div class="small">
           <span class="link small" ng-click="panel.all_fields = true;" ng-if="fields.list.length" ng-class="{strong:panel.all_fields}">
@@ -102,7 +102,7 @@
           <h4>
             <button class="btn btn-mini btn-danger" ng-click="closeFacet();">close</button>
             {{adhocOpts.title}}
-            <span class="pointer ng-scope ng-pristine ng-valid ui-draggable" bs-tooltip="'Drag to add to dashboard'"
+            <span class="pointer ng-scope ng-pristine ng-valid ui-draggable" tooltip="'Drag to add to dashboard'"
               data-drag="true"
               data-jqyoui-options="kbnJqUiDraggableOptions"
               jqyoui-draggable="{animate:false,mutate:false,onStart:'panelMoveStart',onStop:'panelMoveStop',embedded:true}"
@@ -114,7 +114,7 @@
           <kibana-simple-panel type="'{{facetType}}'" panel='{{facetPanel}}' ng-cloak></kibana-simple-panel>
         </div>
 
-        <i class="pull-left icon-chevron-sign-right pointer" ng-click="panel.field_list = !panel.field_list" bs-tooltip="'Show field list'" ng-show="!panel.field_list"></i>
+        <i class="pull-left icon-chevron-sign-right pointer" ng-click="panel.field_list = !panel.field_list" tooltip="'Show field list'" ng-show="!panel.field_list"></i>
         <div class="row-fluid" ng-show="panel.paging">
           <div class="span1 offset1" style="text-align:right">
             <i ng-click="panel.offset = 0" ng-show="panel.offset > 0" class='icon-circle-arrow-left pointer'></i>
@@ -169,9 +169,9 @@
                   <tr ng-repeat="(key,value) in event.kibana._source track by $index" ng-class-odd="'odd'">
                     <td style="word-wrap:break-word" bo-text="key"></td>
                     <td style="white-space:nowrap">
-                      <i class='icon-search pointer' ng-click="build_search(key,value)" bs-tooltip="'Add filter to match this value'"></i>
-                      <i class='icon-ban-circle pointer' ng-click="build_search(key,value,true)" bs-tooltip="'Add filter to NOT match this value'"></i>
-                      <i class="pointer icon-th" ng-click="toggle_field(key)" bs-tooltip="'Toggle table column'"></i>
+                      <i class='icon-search pointer' ng-click="build_search(key,value)" tooltip="'Add filter to match this value'"></i>
+                      <i class='icon-ban-circle pointer' ng-click="build_search(key,value,true)" tooltip="'Add filter to NOT match this value'"></i>
+                      <i class="pointer icon-th" ng-click="toggle_field(key)" tooltip="'Toggle table column'"></i>
                     </td>
                     <!-- At some point we need to create a more efficient way of applying the filter pipeline -->
                     <td style="white-space:pre-wrap;word-wrap:break-word" bo-html="value|noXml|urlLink|stringify"></td>

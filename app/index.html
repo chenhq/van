@@ -4,7 +4,7 @@ span(ng-bind-html='alert.text')
 .pull-right.small(style='padding-right:10px')  {{$index + 1}} alert(s)--><!--.navbar.navbar-static-top(ng-cloak='').navbar-inner
   .container-fluid
     span.brand
-     img(src='img/small.png', bs-tooltip="'Kibana '+(kbnVersion=='@REV@'?'master':kbnVersion)", data-placement='bottom')
+     img(src='img/small.png', tooltip="'Kibana '+(kbnVersion=='@REV@'?'master':kbnVersion)", data-placement='bottom')
      |  {{dashboard.current.title}}
     ul.nav.pull-right(ng-controller='dashLoader', ng-init='init()', ng-include="'app/partials/dashLoader.html'")--><section id="content" ng-view="" ng-cloak="" class="animate-fade-up"></section></div><!--if lt IE 9script(src='bower_components/es5-shim/es5-shim.js')
 script(src='bower_components/json3/lib/json3.min.js')--></div></body></html>

@@ -52,9 +52,9 @@
           <select class="input-small" ng-model="dashboard.current.services.filter.list[id].mandate" ng-options="f for f in ['must','mustNot','either']"></select>
         </span>
 
-        <i class="filter-action pointer icon-remove" bs-tooltip="'Remove'" ng-click="remove(id)"></i>
-        <i class="filter-action pointer" ng-class="{'icon-check': dashboard.current.services.filter.list[id].active,'icon-check-empty': !dashboard.current.services.filter.list[id].active}" bs-tooltip="'Toggle'" ng-click="toggle(id)"></i>
-        <i class="filter-action pointer icon-edit" ng-hide="dashboard.current.services.filter.list[id].editing || !isEditable(dashboard.current.services.filter.list[id])" bs-tooltip="'Edit'" ng-click="dashboard.current.services.filter.list[id].editing = true"></i>
+        <i class="filter-action pointer icon-remove" tooltip="'Remove'" ng-click="remove(id)"></i>
+        <i class="filter-action pointer" ng-class="{'icon-check': dashboard.current.services.filter.list[id].active,'icon-check-empty': !dashboard.current.services.filter.list[id].active}" tooltip="'Toggle'" ng-click="toggle(id)"></i>
+        <i class="filter-action pointer icon-edit" ng-hide="dashboard.current.services.filter.list[id].editing || !isEditable(dashboard.current.services.filter.list[id])" tooltip="'Edit'" ng-click="dashboard.current.services.filter.list[id].editing = true"></i>
       </div>
 
       <div ng-hide="dashboard.current.services.filter.list[id].editing && isEditable(dashboard.current.services.filter.list[id])">
@@ -72,12 +72,12 @@
         </ul>
         <div>
 
-          <button type="submit" ng-click="dashboard.current.services.filter.list[id].editing=undefined;refresh()" class="filter-apply btn btn-mini btn-success" bs-tooltip="'Save and refresh'">Apply</button>
+          <button type="submit" ng-click="dashboard.current.services.filter.list[id].editing=undefined;refresh()" class="filter-apply btn btn-mini btn-success" tooltip="'Save and refresh'">Apply</button>
 
-          <button ng-click="dashboard.current.services.filter.list[id].editing=undefined" class="filter-apply btn-mini btn" bs-tooltip="'Save without refresh'">Save</button>
+          <button ng-click="dashboard.current.services.filter.list[id].editing=undefined" class="filter-apply btn-mini btn" tooltip="'Save without refresh'">Save</button>
         </div>
       </form>
     </div>
-    <i class="pointer icon-plus-sign" ng-click="add()" bs-tooltip="'Add a query filter'" data-placement="right"></i>
+    <i class="pointer icon-plus-sign" ng-click="add()" tooltip="'Add a query filter'" data-placement="right"></i>
   </div>
 </div>

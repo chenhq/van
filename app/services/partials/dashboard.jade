@@ -2,7 +2,7 @@ html
   body
     // is there a better way to repeat without actually affecting the page?
     nil(ng-repeat='pulldown in dashboard.current.pulldowns', ng-controller='PulldownCtrl', ng-show='pulldown.enable')
-      .top-row-close.pointer.pull-left(ng-class='pulldownTabStyle($index)', ng-click='toggle_pulldown(pulldown);dismiss();', bs-tooltip="'Toggle '+pulldown.type", data-placement='bottom')
+      .top-row-close.pointer.pull-left(ng-class='pulldownTabStyle($index)', ng-click='toggle_pulldown(pulldown);dismiss();', tooltip="'Toggle '+pulldown.type", data-placement='bottom')
         span.small {{pulldown.type}}
         i.small(ng-class="{'icon-caret-left':pulldown.collapse,'icon-caret-right':!pulldown.collapse}")
         i.small.icon-star(ng-show='row.notice && pulldown.collapse')
@@ -19,19 +19,19 @@ html
               div(style='padding:0px;margin:0px;position:relative;')
                 .row-close(ng-show='row.collapse', data-placement='bottom')
                   span.row-button.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row')
-                    i.icon-cog.pointer(bs-tooltip="'Configure row'", data-placement='right', ng-show='row.editable')
+                    i.icon-cog.pointer(tooltip="'Configure row'", data-placement='right', ng-show='row.editable')
                   span.row-button.bgPrimary(ng-click='toggle_row(row)', ng-show='row.collapsable')
-                    i.icon-caret-left.pointer(bs-tooltip="'Expand row'", data-placement='right', ng-show='row.collapsable')
+                    i.icon-caret-left.pointer(tooltip="'Expand row'", data-placement='right', ng-show='row.collapsable')
                   span.row-button.row-text(ng-click='toggle_row(row)', ng-class="{'pointer':row.collapsable}") {{row.title || &apos;Row &apos;+$index}}
                 .row-open(style='text-align:center', ng-show='!row.collapse')
                   .row-tab.bgPrimary(ng-show='row.collapsable', ng-click='toggle_row(row)')
-                    i.icon-caret-right(bs-tooltip="'Collapse row'", data-placement='right')
+                    i.icon-caret-right(tooltip="'Collapse row'", data-placement='right')
                     br
                   .row-tab.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')
-                    i.icon-cog.pointer(bs-tooltip="'Configure row'", data-placement='right')
+                    i.icon-cog.pointer(tooltip="'Configure row'", data-placement='right')
                     br
                   .bgSuccess.row-tab(ng-click='editor.index = 2', config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')
-                    i.icon-plus-sign(bs-tooltip="'Add Panel'", data-placement='right')
+                    i.icon-plus-sign(tooltip="'Add Panel'", data-placement='right')
                     br
               div(style='padding-top:0px', ng-if='!row.collapse')
                 // All the panels in the row

@@ -16,11 +16,12 @@ require.config({
     blob:                     '../vendor/blob',
     filesaver:                '../vendor/filesaver',
     chromath:                 '../vendor/chromath',
-    angular:                  '../vendor/angular/angular',
-    'angular-cookies':        '../vendor/angular/angular-cookies',
-    'angular-dragdrop':       '../vendor/angular/angular-dragdrop',
-    'angular-strap':          '../vendor/angular/angular-strap',
-    'angular-sanitize':       '../vendor/angular/angular-sanitize',
+    //angular:                  '../vendor/angular/angular',
+    angular:                  '../bower_components/angular/angular',
+    'angular-cookies':        '../bower_components/angular-cookies/angular-cookies',
+    'angular-dragdrop':       '../bower_components/angular-dragdrop/src/angular-dragdrop',
+    // 'angular-strap':          '../vendor/angular/angular-strap',
+    'angular-sanitize':       '../bower_components/angular-sanitize/angular-sanitize',
     timepicker:               '../vendor/angular/timepicker',
     datepicker:               '../vendor/angular/datepicker',
     bindonce:                 '../vendor/angular/bindonce',
@@ -28,7 +29,7 @@ require.config({
     lodash:                   'components/lodash.extended',
     'lodash-src':             '../vendor/lodash',
     // bootstrap:                '../vendor/bootstrap/bootstrap',
-    // bootstrap:                '../bower_components/twbs-bootstrap-sass/assets/javascripts/bootstrap',
+    bootstrap:                '../bower_components/twbs-bootstrap-sass/assets/javascripts/bootstrap',
 
     jquery:                   '../vendor/jquery/jquery-1.8.0',
     'jquery-ui':              '../vendor/jquery/jquery-ui-1.10.3',
@@ -51,7 +52,7 @@ require.config({
     elasticjs:                '../vendor/elasticjs/elastic-angular-client',
 
     // add by chq
-    //'angular-route': '../bower_components/angular-route/angular-route',
+    'angular-route': '../bower_components/angular-route/angular-route',
     //'angular-resource': '../bower_components/angular-resource/angular-resource',
     //'sass-bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
     //'angular-scenario': '../bower_components/angular-scenario/angular-scenario',
@@ -65,11 +66,11 @@ require.config({
       deps: ['jquery','config'],
       exports: 'angular'
     },
-    /**
+
     bootstrap: {
       deps: ['jquery']
     },
-     */
+
     modernizr: {
       exports: 'Modernizr'
     },
@@ -103,10 +104,10 @@ require.config({
     'angular-route':        ['angular'],
     'angular-touch':        ['angular'],
     'bindonce':             ['angular'],
-    'angular-strap':        ['angular', 'ui-bootstrap','timepicker', 'datepicker'],
+    'angular-strap':        ['angular', 'bootstrap','timepicker', 'datepicker'],
 
-    timepicker:             ['jquery', 'ui-bootstrap'],
-    datepicker:             ['jquery', 'ui-bootstrap'],
+    timepicker:             ['jquery', 'bootstrap'],
+    datepicker:             ['jquery', 'bootstrap'],
 
     elasticjs:              ['angular', '../vendor/elasticjs/elastic'],
 

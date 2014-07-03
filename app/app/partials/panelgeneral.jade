@@ -19,5 +19,5 @@ html
         .editor-option(ng-show='!_.isUndefined(panel.spyable)')
           label.small
             | Inspect 
-            i.icon-question-sign(bs-tooltip="'Allow query reveal via <i class=icon-info-sign></i>'")
+            i.icon-question-sign(tooltip="'Allow query reveal via <i class=icon-info-sign></i>'")
           input(type='checkbox', ng-model='panel.spyable', ng-checked='panel.spyable')

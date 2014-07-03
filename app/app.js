@@ -7,9 +7,10 @@ define([
   'lodash',
   'require',
   'elasticjs',
-  // 'bootstrap',
+  'bootstrap',
   'angular-sanitize',
-  'angular-strap',
+  'angular-route',
+  // 'angular-strap',
   'angular-dragdrop',
   'angular-cookies',
   'extend-jquery',
@@ -19,8 +20,8 @@ define([
 function (angular, $, _, appLevelRequire) {
 
   "use strict";
-
-  var app = angular.module('kibana', []),
+  require('angular-route');
+  var app = angular.module('kibana', ['ngRoute']),
     // we will keep a reference to each module defined before boot, so that we can
     // go back and allow it to define new features later. Once we boot, this will be false
     pre_boot_modules = [],
@@ -57,11 +58,13 @@ function (angular, $, _, appLevelRequire) {
     switch($scope.$$phase) {
     case '$apply':
       // $digest hasn't started, we should be good
+      console.log('2',fn);
       $scope.$eval(fn);
       break;
     case '$digest':
       // waiting to $apply the changes
       setTimeout(function () { app.safeApply($scope, fn); }, 10);
+      console.log('3',fn);
       break;
     default:
       // clear to begin an $apply $$phase
@@ -96,13 +99,14 @@ function (angular, $, _, appLevelRequire) {
 
   var apps_deps = [
     'elasticjs.service',
-    '$strap.directives',
+    // '$strap.directives',
     'ngSanitize',
     'ngDragDrop',
     'ngCookies',
     'kibana',
     'pasvaz.bindonce',
-    'app.layout'
+    'app.layout',
+    'ui.bootstrap'
   ];
 
   _.each('controllers directives factories services filters'.split(' '),
@@ -126,7 +130,7 @@ function (angular, $, _, appLevelRequire) {
     'directives/all',
     'filters/all',
     // add by chq
-    // 'ui-bootstrap',
+    'ui-bootstrap',
     'scripts/layout/all'
 
   ], function () {
@@ -146,6 +150,7 @@ function (angular, $, _, appLevelRequire) {
 
             $rootScope.requireContext = appLevelRequire;
             $rootScope.require = function (deps, fn) {
+              console.log('1',fn);
               var $scope = this;
               $scope.requireContext(deps, function () {
                 var deps = _.toArray(arguments);
