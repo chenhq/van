@@ -104,6 +104,15 @@ function (angular, app, _) {
        * --
        */
 
+      /**
+       * add by chq
+       * row config edit
+       */
+
+      $scope.rowConfigEdit = function() {
+
+      };
+
       $scope.init();
 
     }
