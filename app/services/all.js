@@ -7,6 +7,8 @@ define([
   './querySrv',
   './timer',
   './panelMove',
-  './esVersion'
+  './esVersion',
+  // add by chq
+  './modals/rowConfigModal'
 ],
 function () {});

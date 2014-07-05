@@ -18,7 +18,7 @@ html
             .row-control
               div(style='padding:0px;margin:0px;position:relative;')
                 .row-close(ng-show='row.collapse', data-placement='bottom')
-                  span.row-button.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row')
+                  span.row-button.bgWarning(kbn-model='row')
                     i.icon-cog.pointer(tooltip="'Configure row'", data-placement='right', ng-show='row.editable')
                   span.row-button.bgPrimary(ng-click='toggle_row(row)', ng-show='row.collapsable')
                     i.icon-caret-left.pointer(tooltip="'Expand row'", data-placement='right', ng-show='row.collapsable')
@@ -27,7 +27,10 @@ html
                   .row-tab.bgPrimary(ng-show='row.collapsable', ng-click='toggle_row(row)')
                     i.icon-caret-right(tooltip="'Collapse row'", data-placement='right')
                     br
-                  .row-tab.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')
+                  //.row-tab.bgWarning(config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')
+                    i.icon-cog.pointer(tooltip="'Configure row'", data-placement='right')
+                    br
+                  .row-tab.bgWarning(ng-click='rowConfigEdit()', kbn-model='row', ng-show='row.editable')
                     i.icon-cog.pointer(tooltip="'Configure row'", data-placement='right')
                     br
                   .bgSuccess.row-tab(ng-click='editor.index = 2', config-modal='app/partials/roweditor.html', kbn-model='row', ng-show='row.editable')

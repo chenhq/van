@@ -8,7 +8,7 @@ define([
 
         var module = angular.module('kibana.controllers');
 
-        module.controller('RowCtrl', function ($scope, $rootScope, $timeout, ejsResource, querySrv) {
+        module.controller('RowCtrl', function ($scope, $rootScope, $timeout, ejsResource, querySrv, rowConfigService) {
                 var _d = {
                     title: "Row",
                     height: "150px",
@@ -109,10 +109,13 @@ define([
                  * --
                  */
                 $scope.rowConfigEdit = function () {
-                    modalService.showModal({}, modalOptions).then(function (result) {
+                    rowConfigService.showModal({}, modalOptions).then(function (result) {
+                        /**
                         dataService.deleteCustomer($scope.customer.id).then(function () {
                             $location.path('/customers');
                         }, processError);
+                        */
+
                     });
                 };
 
