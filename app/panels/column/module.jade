@@ -1,0 +1,15 @@
+html
+  body
+    div(ng-controller='column', ng-init='init();')
+      // Panels
+      .row-fluid.panel(ng-repeat='(name, panel) in panel.panels', ng-hide="panel.height == '0px' || panel.hide", style='min-height:{{panel.height}}; position:relative')
+        // Error Panel
+        .row-fluid
+          .span12.alert.alert-error.panel-error(ng-hide='!panel.error')
+            a.close(ng-click='panel.error=false') &times;
+            i.icon-exclamation-sign
+            strong Oops!
+            |  {{panel.error}}
+        // Content Panel
+        .row-fluid
+          kibana-panel(type='panel.type')

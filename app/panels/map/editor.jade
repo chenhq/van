@@ -1,0 +1,17 @@
+html
+  body
+    .editor-row
+      .editor-option
+        form
+          h6
+            | Field 
+            tip 2 letter country or state code
+          input.input-small(bs-typeahead='fields.list', type='text', ng-model='panel.field', ng-change='set_refresh(true)')
+      .editor-option
+        h6
+          | Max 
+          tip Maximum countries to plot
+        input.input-mini(type='number', ng-model='panel.size', ng-change='set_refresh(true)')
+      .editor-option
+        h6 Map
+        select.input-small(ng-change="$emit('render')", ng-model='panel.map', ng-options="f for f in ['world','europe','usa']")

@@ -8,7 +8,7 @@ function (angular, app, _) {
 
   var module = angular.module('kibana.controllers');
 
-  module.controller('RowCtrl', function($scope, $rootScope, $timeout,ejsResource, querySrv) {
+  module.controller('RowCtrl', function($scope, $rootScope, $timeout,ejsResource, querySrv, $modal) {
       var _d = {
         title: "Row",
         height: "150px",
@@ -110,12 +110,49 @@ function (angular, app, _) {
        */
 
       $scope.rowConfigEdit = function() {
+          console.log('xxx');
+          //rowConfigService.showModal({}, modalOptions).then(function (result) {
+              /**
+               dataService.deleteCustomer($scope.customer.id).then(function () {
+                            $location.path('/customers');
+                */
+                //});
+          console.log($scope.$id);
+          var modalInstance = $modal.open({
+                  templateUrl: 'app/partials/roweditor.html',
+                  size: 'lg',
+                  controller: ModalInstanceCtrl,
+                  resolve: {
+                      panels: function() {
+                          return $scope.panels
+                      }
+                  }
+              });
 
+          modalInstance.result.then(function () {
+              console.log('xxxx');
+          }, function () {
+              console.log('yyyy');
+          });
       };
+
+
 
       $scope.init();
 
     }
   );
+
+  var ModalInstanceCtrl = function ($scope, $modalInstance, panels) {
+
+     $scope.panels = panels;
+      $scope.ok = function () {
+
+      };
+
+      $scope.cancel = function () {
+
+      };
+    }
 
 });

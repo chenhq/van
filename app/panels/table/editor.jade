@@ -1,0 +1,51 @@
+html
+  body
+    .row-fluid
+      .span6.section
+        h5 Options
+        .editor-option
+          label.small Header
+          input(type='checkbox', ng-model='panel.header', ng-checked='panel.header')
+        .editor-option
+          label.small Sorting
+          input(type='checkbox', ng-model='panel.sortable', ng-checked='panel.sortable')
+        .editor-option(style='white-space:nowrap', ng-show='panel.sortable')
+          label.small Sort
+          input.input-small(bs-typeahead='fields.list', ng-model='panel.sort[0]', type='text')
+          i(ng-click='set_sort(panel.sort[0])', ng-class="{'icon-chevron-up': panel.sort[1] == 'asc','icon-chevron-down': panel.sort[1] == 'desc'}")
+        .editor-option
+          label.small Font Size
+          select.input-small(ng-model="panel.style['font-size']", ng-options="f for f in ['7pt','8pt','9pt','10pt','12pt','14pt','16pt','18pt','20pt','24pt','28pt','32pt','36pt','42pt','48pt','52pt','60pt','72pt']")
+        .editor-option
+          label.small
+            | Trim Factor 
+            tip Trim fields to this long divided by # of rows. Requires data refresh.
+          input.input-small(type='number', ng-model='panel.trimFactor', ng-change='set_refresh(true)')
+        br
+        .editor-option
+          label.small
+            | Local Time 
+            tip Adjust time field to browser&apos;s local time
+          input(type='checkbox', ng-change='set_refresh(true)', ng-model='panel.localTime', ng-checked='panel.localTime')
+        .editor-option(ng-show='panel.localTime')
+          label.small Time Field
+          input.input-small(type='text', ng-model='panel.timeField', ng-change='set_refresh(true)', bs-typeahead='fields.list')
+      .section.span6
+        h5 Columns
+        form.input-append.editor-option
+          input.input-small(bs-typeahead='fields.list', type='text', ng-model='newfield')
+          button.btn(ng-click="panel.fields = _.toggleInOut(panel.fields,newfield);newfield=''")
+            i.icon-plus
+        br
+        span.label(style='margin-left:3px', ng-repeat='field in panel.fields')
+          | {{field}} 
+          i.pointer.icon-remove-sign(ng-click='panel.fields = _.toggleInOut(panel.fields,field)')
+        h5 Highlighted Fields
+        form.input-append.editor-option
+          input.input-small(bs-typeahead='fields.list', type='text', ng-model='newhighlight', ng-change='set_refresh(true)')
+          button.btn(ng-click="panel.highlight = _.toggleInOut(panel.highlight,newhighlight);newhighlight=''")
+            i.icon-plus
+        br
+        span.label(style='margin-left:3px', ng-repeat='field in panel.highlight')
+          | {{field}} 
+          i.pointer.icon-remove-sign(ng-click='panel.highlight = _.toggleInOut(panel.highlight,field);set_refresh(true)')

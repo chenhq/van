@@ -1,0 +1,24 @@
+html
+  body
+    a.close(ng-click='dismiss()', href='') &times;
+    h4
+      | Micro Analysis of {{micropanel.field}} 
+      i.pointer.icon-search(ng-click="fieldExists(micropanel.field,'must');dismiss();")
+      i.pointer.icon-ban-circle(ng-click="fieldExists(micropanel.field,'mustNot');dismiss();")
+      br
+      small {{micropanel.count}} events in the table set
+    table.table.table-bordered.table-striped.table-condensed(style='width:480px')
+      thead
+        th {{micropanel.field}}
+        th Action
+        th In set
+      tbody
+        tr(ng-repeat='field in micropanel.values')
+          td {{{true: &quot;__blank__&quot;,false:field[0]}[field[0] == &quot;&quot;]}}
+          td
+            i.pointer.icon-search(ng-click="build_search(micropanel.field,field[0],'must');dismiss();")
+            i.pointer.icon-ban-circle(ng-click="build_search(micropanel.field,field[0],'mustNot');dismiss();")
+          td {{field[1]}}
+    span(ng-repeat='(field,count) in micropanel.related')
+      a(ng-click='toggle_field(field)') {{field}}
+      |  ({{Math.round((count / micropanel.count) * 100)}}%),

@@ -1,0 +1,39 @@
+html
+  body
+    h4 Charted
+    div(ng-include='', src="'app/partials/querySelect.html'")
+    .editor-row
+      h4 Markers
+      .small
+        | Here you can specify a query to be plotted on your chart as a marker. Hovering over a marker will display the field you specify below. If more documents are found than the limit you set, they will be scored by Elasticsearch and events that best match your query will be displayed.
+      style.
+        .querySelect .query {
+        margin-right: 5px;
+        }
+        .querySelect .selected {
+        border: 3px solid;
+        }
+        .querySelect .unselected {
+        border: 0px solid;
+        }
+      p
+        .editor-option
+          label.small Enable
+          input(type='checkbox', ng-change='set_refresh(true)', ng-model='panel.annotate.enable', ng-checked='panel.annotate.enable')
+        .editor-option(ng-show='panel.annotate.enable')
+          label.small Marker Query
+          input.input-large(type='text', ng-change='set_refresh(true)', ng-model='panel.annotate.query')
+        .editor-option(ng-show='panel.annotate.enable')
+          label.small Tooltip field
+          input.input-small(type='text', ng-model='panel.annotate.field', bs-typeahead='fields.list')
+        .editor-option(ng-show='panel.annotate.enable')
+          label.small
+            | Limit 
+            tip Max markers on the chart
+          input.input-mini(type='number', ng-model='panel.annotate.size', ng-change='set_refresh(true)')
+        .editor-option(ng-show='panel.annotate.enable')
+          label.small
+            | Sort 
+            tip Determine the most relevant markers using this field
+          input.input-small(type='text', bs-typeahead='fields.list', ng-model='panel.annotate.sort[0]', ng-change='set_refresh(true)')
+          i(ng-click="panel.annotate.sort[1] = _.toggle(panel.annotate.sort[1],'desc','asc');set_refresh(true)", ng-class="{'icon-chevron-up': panel.annotate.sort[1] == 'asc','icon-chevron-down': panel.annotate.sort[1] == 'desc'}")

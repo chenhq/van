@@ -1,0 +1,23 @@
+html
+  body
+    .editor-row
+      .section
+        h5 Parameters
+        .editor-option
+          form(style='margin-bottom: 0px')
+            label.small Goal
+            input(type='number', style='width:90%', ng-model='panel.query.goal', ng-change='set_refresh(true)')
+      .section
+        h5 View Options
+        .editor-option
+          label.small  Donut 
+          input(type='checkbox', ng-model='panel.donut', ng-checked='panel.donut')
+        .editor-option
+          label.small  Tilt 
+          input(type='checkbox', ng-model='panel.tilt', ng-checked='panel.tilt')
+        .editor-option
+          label.small  Labels 
+          input(type='checkbox', ng-model='panel.labels', ng-checked='panel.labels')
+        .editor-option
+          label.small Legend
+          select.input-small(ng-model='panel.legend', ng-options="f for f in ['above','below','none']")

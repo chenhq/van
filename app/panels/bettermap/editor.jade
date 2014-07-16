@@ -1,0 +1,16 @@
+html
+  body
+    .editor-row
+      .editor-option
+        form
+          h6
+            | Coordinate Field 
+            tip geoJSON array! Long,Lat NOT Lat,Long
+          input.input-small(bs-typeahead='fields.list', type='text', ng-model='panel.field')
+      .editor-option
+        form
+          h6 Tooltip Field
+          input.input-small(bs-typeahead='fields.list', type='text', ng-model='panel.tooltip')
+      .editor-option
+        h6 Max Points
+        input.input-small(type='number', ng-model='panel.size')

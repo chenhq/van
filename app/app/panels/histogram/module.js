@@ -42,7 +42,7 @@ function (angular, app, $, _, kbn, moment, timeSeries, numeral) {
       modals : [
         {
           description: "Inspect",
-          icon: "icon-info-sign",
+          icon: "fa-xxx",
           partial: "app/partials/inspector.html",
           show: $scope.panel.spyable
         }

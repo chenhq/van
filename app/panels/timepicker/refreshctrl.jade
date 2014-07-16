@@ -1,0 +1,9 @@
+html
+  body
+    form.form-inline.input-append(name='refreshPopover', style='margin:0px')
+      label
+        small Interval (seconds)
+      br
+      input.input-mini(type='number', ng-model='refresh_interval')
+      button.btn(type='button', ng-click='set_interval(refresh_interval);dismiss()')
+        i.icon-ok

@@ -1,0 +1,63 @@
+/*
+Syntax error: File to import not found or unreadable: compass/css3.
+              Load path: /home/bigbox/github/van/app/styles (DEPRECATED)
+        on line 8 of main.scss
+
+3: @import "global/var";
+4: // @import "sass-bootstrap/lib/bootstrap";
+5: @import "../bower_components/twbs-bootstrap-sass/assets/stylesheets/bootstrap";
+6: // @import "../bower_components/sass-bootstrap/lib/bootstrap";
+7: //@import "compass";
+8: @import "compass/css3";
+9: 
+10: //pages
+11: @import "global/var-pages";
+12: @import "pages/lock-screen";
+13: @import "pages/tasks";
+
+Backtrace:
+main.scss:8
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/import_node.rb:66:in `rescue in import'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/import_node.rb:45:in `import'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/import_node.rb:28:in `imported_file'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/import_node.rb:37:in `css_import?'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:283:in `visit_import'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/stack.rb:79:in `block in with_base'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/stack.rb:121:in `with_frame'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/stack.rb:79:in `with_base'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:152:in `visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:151:in `visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/tree/root_node.rb:20:in `render'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/engine.rb:274:in `render'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:378:in `update_stylesheet'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:186:in `each'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/plugin.rb:82:in `update_stylesheets'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/exec.rb:489:in `watch_or_update'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/exec.rb:346:in `process_result'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/exec.rb:43:in `parse'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/lib/sass/exec.rb:22:in `parse!'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/gems/sass-3.3.8/bin/scss:13:in `<top (required)>'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/bin/scss:23:in `load'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/bin/scss:23:in `<main>'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/bin/ruby_noexec_wrapper:14:in `eval'
+/home/bigbox/.rvm/gems/ruby-1.9.2-p320/bin/ruby_noexec_wrapper:14:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: compass/css3.\A               Load path: /home/bigbox/github/van/app/styles (DEPRECATED)\A         on line 8 of main.scss\A \A 3: @import \"global/var\";\A 4: // @import \"sass-bootstrap/lib/bootstrap\";\A 5: @import \"../bower_components/twbs-bootstrap-sass/assets/stylesheets/bootstrap\";\A 6: // @import \"../bower_components/sass-bootstrap/lib/bootstrap\";\A 7: //@import \"compass\";\A 8: @import \"compass/css3\";\A 9: \A 10: //pages\A 11: @import \"global/var-pages\";\A 12: @import \"pages/lock-screen\";\A 13: @import \"pages/tasks\";"; }

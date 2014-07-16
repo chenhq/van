@@ -1,0 +1,63 @@
+html
+  body
+    | The lucene query type uses 
+    a(target='_blank', href='http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax') LUCENE query string syntax
+    |  to find matching documents or events within Elasticsearch.
+    h4 Examples
+    ul.unstyled(type='disc')
+      li.listitem
+        p.simpara
+          code.literal status
+          |  field contains 
+          code.literal active
+        pre.literallayout.
+          \nstatus:active          
+      li.listitem
+        p.simpara
+          code.literal title
+          |  field contains 
+          code.literal quick
+          |  or 
+          code.literal brown
+        pre.literallayout.
+          \ntitle:(quick brown)          
+      li.listitem
+        p.simpara
+          code.literal author
+          |  field contains the exact phrase 
+          code.literal &quot;john smith&quot;
+        pre.literallayout.
+          \nauthor:"John Smith"          
+    p
+      | Wildcard searches can be run on individual terms, using 
+      code.literal ?
+      |  to replace
+      | a single character, and 
+      code.literal *
+      |  to replace zero or more characters:
+    pre.literallayout.
+      \nqu?ck bro*      
+    ul.unstyled(type='disc')
+      li.listitem
+        p.simpara
+          | Numbers 1..5
+        pre.literallayout.
+          \ncount:[1 TO 5]          
+      li.listitem
+        p.simpara
+          | Tags between 
+          code.literal alpha
+          |  and 
+          code.literal omega
+          | , excluding 
+          code.literal alpha
+          |  and 
+          code.literal omega
+          | :
+        pre.literallayout.
+          \ntag:{alpha TO omega}          
+      li.listitem
+        p.simpara
+          | Numbers from 10 upwards
+        pre.literallayout.
+          \ncount:[10 TO *]          

@@ -1,0 +1,48 @@
+html
+  body
+    div
+      h5 Allow saving to
+      .row-fluid
+        .span2
+          label.small Export
+          input(type='checkbox', ng-model='panel.save.local', ng-checked='panel.save.local')
+        .span2
+          label.small Defaults
+          input(type='checkbox', ng-model='panel.save.default', ng-checked='panel.save.default')
+        .span2
+          label.small
+            | Gist 
+            tip
+              | Requires your domain to be OAUTH registered with Github
+              tip
+          input(type='checkbox', ng-model='panel.save.gist', ng-checked='panel.save.gist')
+        .span2
+          label.small Elasticsearch
+          input(type='checkbox', ng-model='panel.save.elasticsearch', ng-checked='panel.save.elasticsearch')
+      h5 Allow loading from
+      .row-fluid
+        .span2
+          label.small Local file
+          input(type='checkbox', ng-model='panel.load.local', ng-checked='panel.load.local')
+        .span2
+          label.small Gist
+          input(type='checkbox', ng-model='panel.load.gist', ng-checked='panel.load.gist')
+        .span2
+          label.small Elasticsearch
+          input(type='checkbox', ng-model='panel.load.elasticsearch', ng-checked='panel.load.elasticsearch')
+        .span3(ng-show='panel.load.elasticsearch')
+          label.small ES list size
+          input.input-mini(type='number', ng-model='panel.elasticsearch_size')
+      h5 Sharing
+      .row-fluid
+        .span2
+          label.small Allow Sharing
+          input(type='checkbox', ng-model='panel.temp', ng-checked='panel.temp')
+        .span2(ng-show='panel.temp')
+          label.small TTL
+          input(type='checkbox', ng-model='panel.ttl_enable', ng-checked='panel.temp')
+        .span5(ng-show='panel.temp && panel.ttl_enable')
+          label.small
+            | TTL Duration 
+            i.icon-question-sign(tooltip="'Elasticsearch date math, eg: 1m,1d,1w,30d'")
+          input.input-small(type='text', ng-model='panel.temp_ttl')

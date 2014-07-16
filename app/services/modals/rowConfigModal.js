@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(['angular', 'ui-bootstrap'], function (angular) {
     angular.module('kibana.services').service('rowConfigService', ['$modal',
         function ($modal) {
 

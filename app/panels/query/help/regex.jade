@@ -1,0 +1,16 @@
+html
+  body
+    | The regex query allows you to use regular expressions to match terms in the 
+    i _all
+    |  field.
+    | A detailed overview of lucene&apos;s regex engine is available here: 
+    a(target='_blank', href='http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html#regexp-syntax') Regular expressions in Elasticsearch
+    h5 A note on anchoring
+    | Lucene&rsquo;s patterns are always anchored. The pattern provided must match the entire string. For string &quot;abcde&quot;:
+    p
+      code ab.*
+      |  will match
+      br
+      code abcd
+      |  will not match
+      br

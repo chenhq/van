@@ -1,0 +1,26 @@
+html
+  body
+    .query-panel(ng-controller='query', ng-init='init()')
+      div(ng-repeat='id in (unPinnedQueries = (dashboard.current.services.query.ids|pinnedQuery:false))', ng-class="{'short-query': unPinnedQueries.length>1}")
+        form.form-search(style='position:relative;margin:5px 0;', ng-submit='refresh()')
+          span.begin-query
+            i.pointer(ng-class='queryIcon(dashboard.current.services.query.list[id].type)', ng-show='dashboard.current.services.query.list[id].enable', data-unique='1', bs-popover="'app/panels/query/meta.html'", data-placement='bottomLeft', ng-style='{color: dashboard.current.services.query.list[id].color}')
+            i.pointer.icon-circle-blank(ng-click='dashboard.current.services.query.list[id].enable=true;dashboard.refresh();', ng-hide='dashboard.current.services.query.list[id].enable', tooltip="'Activate query'", ng-style='{color: dashboard.current.services.query.list[id].color}')
+            i.icon-remove-sign.pointer.remove-query(ng-show='dashboard.current.services.query.ids.length > 1', ng-click='querySrv.remove(id);refresh()')
+          span
+            input.search-query.panel-query(ng-disabled='!dashboard.current.services.query.list[id].enable', ng-class="{ 'input-block-level': unPinnedQueries.length==1, 'last-query': $last, 'has-remove': dashboard.current.services.query.ids.length > 1 }", bs-typeahead='panel.history', data-min-length='0', data-items='100', type='text', ng-model='dashboard.current.services.query.list[id].query')
+          span.end-query
+            i.icon-search.pointer(ng-click='refresh()', ng-show='$last')
+            i.icon-plus.pointer(ng-click='querySrv.set({})', ng-show='$last')
+      div(style='display:inline-block', ng-repeat='id in dashboard.current.services.query.ids|pinnedQuery:true')
+        span.pointer.badge.pins(ng-show='$first', ng-click='panel.pinned = !panel.pinned')
+          | Pinned 
+          i(ng-class="{'icon-caret-right':panel.pinned,'icon-caret-left':!panel.pinned}")
+        span.badge.pinned(ng-show='panel.pinned')
+          i.icon-circle.pointer(ng-show='dashboard.current.services.query.list[id].enable', ng-style='{color: dashboard.current.services.query.list[id].color}', data-unique='1', bs-popover="'app/panels/query/meta.html'", data-placement='bottomLeft')
+          i.pointer.icon-circle-blank(tooltip="'Activate query'", ng-click='dashboard.current.services.query.list[id].enable=true;dashboard.refresh();', ng-hide='dashboard.current.services.query.list[id].enable', ng-style='{color: dashboard.current.services.query.list[id].color}')
+          span(tooltip='dashboard.current.services.query.list[id].query | limitTo:45')
+            | {{dashboard.current.services.query.list[id].alias || dashboard.current.services.query.list[id].query}}
+      span(style='display:inline-block', ng-show='unPinnedQueries.length == 0')
+        i.icon-search.pointer(ng-click='refresh()')
+        i.icon-plus.pointer(ng-click='querySrv.set({})')

@@ -1,0 +1,25 @@
+html
+  body
+    .editor-row
+      .section
+        .editor-option
+          h6 Show Controls
+          input(type='checkbox', ng-model='panel.paging', ng-checked='panel.paging')
+        .editor-option
+          h6 Overflow
+          select.input-small(ng-model='panel.overflow', ng-options="f.value as f.key for f in [{key:'scroll',value:'height'},{key:'expand',value:'min-height'}]")
+      .section
+        .editor-option
+          h6 Per Page
+          input.input-mini(type='number', ng-model='panel.size', ng-change='get_data()')
+        .editor-option
+          h6 &nbsp;
+          center
+            i.icon-remove
+            center
+        .editor-option
+          h6 Page limit
+          input.input-mini(type='number', ng-model='panel.pages', ng-change='get_data()')
+        .editor-option.large
+          h6 Pageable
+          strong.large = {{panel.size * panel.pages}}

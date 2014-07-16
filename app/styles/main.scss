@@ -110,4 +110,91 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 }
 
 
+code, pre {
+  background-color: #eee;
+}
+
+#content .panel {
+  display: inline-table;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 0;
+  background: #fff;
+  border: 3px solid #eee;
+}
+
+//.dropdown-menu.panel {
+  //display: none;
+//}
+
+.panel-container {
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  padding: 10px;
+  > [ng-controller] {
+    box-sizing: border-box;
+    display: table;
+    width: 100%;
+    min-height: inherit;
+  }
+}
+
+.panel-header {
+  display: table-row;
+  width: 100%;
+  height: 0;
+}
+
+.panel-content {
+  display: table-row;
+  width: 100%;
+}
+
+.panel-title {
+  border: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.panel-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 800;
+}
+
+.panel div.panel-extra {
+  div.panel-extra-container {
+    margin-right: 0;
+    line-height: 10px;
+  }
+  font-size: .9em;
+  margin-bottom: 10px;
+  .extra {
+    float: right!important;
+    text-align: right;
+  }
+}
+
+.panel-error {
+  color: #fff;
+  padding: 3px 10px 0 10px;
+  margin-bottom: 10px;
+}
+
+.ui-draggable-dragging {
+  display: block;
+  z-index: 9999;
+}
+
+.dragInProgress .panel-container {
+  border: 1px solid #007fff;
+}
+
+.panel-filler {
+  text-align: center;
+  margin: 5px;
+  width: 100%;
+  background: rgba(100, 100, 100, 0.5);
+  border: 1px solid #007fff;
+}
 

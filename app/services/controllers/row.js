@@ -109,6 +109,7 @@ define([
                  * --
                  */
                 $scope.rowConfigEdit = function () {
+                    console.log('xxx');
                     rowConfigService.showModal({}, modalOptions).then(function (result) {
                         /**
                         dataService.deleteCustomer($scope.customer.id).then(function () {

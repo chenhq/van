@@ -1,0 +1,65 @@
+html
+  body
+    div(ng-controller='filtering', ng-init='init()')
+      style.
+        .filtering-container {
+        margin-top: 3px;
+        }
+        .filter-panel-filter {
+        display:inline-block;
+        vertical-align: top;
+        width: 220px;
+        padding: 5px 5px 0px 5px;
+        margin: 5px 5px 5px 0px;
+        color: #fff;
+        background-color: #444;
+        }
+        .filter-panel-filter ul {
+        margin-bottom: 3px;
+        }
+        .filter-deselected {
+        opacity: 0.5;
+        }
+        .filter-action {
+        float:right;
+        margin-bottom: 0px !important;
+        margin-left: 3px;
+        }
+        .filter-mandate {
+        text-decoration: underline;
+        cursor: pointer;
+        }
+        .filter-apply {
+        float:right;
+        }
+      .filtering-container
+        span(ng-show='dashboard.current.services.filter.ids.length == 0')
+          h5 No filters available
+        .small.filter-panel-filter(ng-repeat='id in dashboard.current.services.filter.ids')
+          div
+            strong {{dashboard.current.services.filter.list[id].type}}
+            span.filter-mandate(ng-show='!dashboard.current.services.filter.list[id].editing && isEditable(dashboard.current.services.filter.list[id])', ng-click='dashboard.current.services.filter.list[id].editing = true')
+              | {{dashboard.current.services.filter.list[id].mandate}}
+            span(ng-show='!isEditable(dashboard.current.services.filter.list[id])')
+              | {{dashboard.current.services.filter.list[id].mandate}}
+            i.icon-circle(ng-class='getFilterClass(dashboard.current.services.filter.list[id])')
+            span(ng-show='dashboard.current.services.filter.list[id].editing')
+              select.input-small(ng-model='dashboard.current.services.filter.list[id].mandate', ng-options="f for f in ['must','mustNot','either']")
+            i.filter-action.pointer.icon-remove(tooltip="'Remove'", ng-click='remove(id)')
+            i.filter-action.pointer(ng-class="{'icon-check': dashboard.current.services.filter.list[id].active,'icon-check-empty': !dashboard.current.services.filter.list[id].active}", tooltip="'Toggle'", ng-click='toggle(id)')
+            i.filter-action.pointer.icon-edit(ng-hide='dashboard.current.services.filter.list[id].editing || !isEditable(dashboard.current.services.filter.list[id])', tooltip="'Edit'", ng-click='dashboard.current.services.filter.list[id].editing = true')
+          div(ng-hide='dashboard.current.services.filter.list[id].editing && isEditable(dashboard.current.services.filter.list[id])')
+            ul.unstyled
+              li(ng-repeat='(key,value) in dashboard.current.services.filter.list[id] track by $index', ng-show='show_key(key)')
+                strong {{key}}
+                |  : {{value}}
+          form(ng-show='dashboard.current.services.filter.list[id].editing && isEditable(dashboard.current.services.filter.list[id])')
+            ul.unstyled
+              li(ng-repeat='key in _.keys(dashboard.current.services.filter.list[id])', ng-show='show_key(key)')
+                strong {{key}}
+                |  : 
+                input(type='text', ng-model='dashboard.current.services.filter.list[id][key]')
+            div
+              button.filter-apply.btn.btn-mini.btn-success(type='submit', ng-click='dashboard.current.services.filter.list[id].editing=undefined;refresh()', tooltip="'Save and refresh'") Apply
+              button.filter-apply.btn-mini.btn(ng-click='dashboard.current.services.filter.list[id].editing=undefined', tooltip="'Save without refresh'") Save
+        i.pointer.icon-plus-sign(ng-click='add()', tooltip="'Add a query filter'", data-placement='right')

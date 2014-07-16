@@ -1,0 +1,36 @@
+html
+  body
+    div
+      .row-fluid
+        h4 Add Panel to Column
+        select.input-medium(ng-model='new_panel.type', ng-options="f for f in _.without(config.panel_names,'column')| stringSort", ng-change='reset_panel(new_panel.type);send_render();')
+        small Select Type
+        div(ng-show='!(_.isUndefined(new_panel.type))')
+          div(column-edit='', panel='new_panel', config='config', row='row', dashboards='dashboards', type='new_panel.type')
+          button.btn.btn-primary(ng-click='add_panel(panel,new_panel); reset_panel();') Create Panel
+          br
+      .row-fluid
+        .span12
+          h4 Panels
+          table.table.table-condensed.table-striped
+            thead
+              th Title
+              th Type
+              th Height
+              th Delete
+              th Move
+              th
+              th Hide
+            tr(ng-repeat='app in panel.panels')
+              td {{app.title}}
+              td {{app.type}}
+              td
+                input.input-small(type='text', ng-model='app.height')
+              td
+                i.pointer.icon-remove(ng-click='panel.panels = _.without(panel.panels,app)')
+              td
+                i.pointer.icon-arrow-up(ng-click='_.move(panel.panels,$index,$index-1)', ng-hide='$first')
+              td
+                i.pointer.icon-arrow-down(ng-click='_.move(panel.panels,$index,$index+1)', ng-hide='$last')
+              td
+                input(type='checkbox', ng-model='app.hide', ng-checked='app.hide')

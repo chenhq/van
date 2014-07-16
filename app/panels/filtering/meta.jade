@@ -1,0 +1,13 @@
+html
+  body
+    div
+      style.
+        .input-query-alias {
+        margin-bottom: 5px !important;
+        }
+      a.close(ng-click='render();dismiss();', href='') &times;
+      h6 Query Alias
+      form
+        input.input-medium.input-query-alias(type='text', ng-model='queries.list[id].alias', placeholder='Alias...')
+        div
+          i.pointer(ng-repeat='color in queries.colors', ng-class="{'icon-circle-blank':queries.list[id].color == color,'icon-circle':queries.list[id].color != color}", style='color:{{color}}', ng-click='queries.list[id].color = color;render();')  

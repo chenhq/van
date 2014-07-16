@@ -26,11 +26,11 @@ function (angular,$) {
             '<span class="extra row-button" ng-show="panel.editable != false && panel.removable != false">' +
               '<span confirm-click="row.panels = _.without(row.panels,panel)" '+
               'confirmation="Are you sure you want to remove this {{panel.type}} panel?" class="pointer">'+
-              '<i class="icon-remove pointer" tooltip="\'Remove\'"></i></span>'+
+              '<i class="fa fa-times pointer" tooltip="Remove"></i></span>'+
             '</span>' +
 
             '<span class="extra row-button" ng-hide="panel.draggable == false">' +
-              '<span class="pointer" tooltip="\'Drag here to move\'"' +
+              '<span class="pointer" tooltip="Drag here to move"' +
               'data-drag=true data-jqyoui-options="kbnJqUiDraggableOptions"'+
               ' jqyoui-draggable="'+
               '{'+
@@ -39,22 +39,22 @@ function (angular,$) {
                 'index:{{$index}},'+
                 'onStart:\'panelMoveStart\','+
                 'onStop:\'panelMoveStop\''+
-                '}"  ng-model="row.panels"><i class="icon-move"></i></span>'+
+                '}"  ng-model="row.panels"><i class="fa fa-arrows"></i></span>'+
             '</span>' +
 
             '<span class="row-button extra" ng-show="panel.editable != false">' +
               '<span config-modal="./app/partials/paneleditor.html" kbn-model="panel" class="pointer">'+
-              '<i class="icon-cog pointer" tooltip="\'Configure\'"></i></span>'+
+              '<i class="fa fa-cog pointer" tooltip="Configure"></i></span>'+
             '</span>' +
 
             '<span ng-repeat="task in panelMeta.modals" class="row-button extra" ng-show="task.show">' +
               '<span bs-modal="task.partial" class="pointer"><i ' +
-                'tooltip="task.description" ng-class="task.icon" class="pointer"></i></span>'+
+                'tooltip="{{task.description}}" ng-class="task.icon" class="pointer"></i></span>'+
             '</span>' +
 
             '<span class="row-button extra" ng-show="panelMeta.loading == true">' +
               '<span>'+
-                '<i class="icon-spinner icon-spin icon-large"></i>' +
+                '<i class="fa fa-spinner fa-spin"></i>' +
               '</span>'+
             '</span>' +
 

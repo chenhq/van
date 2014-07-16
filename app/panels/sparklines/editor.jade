@@ -1,0 +1,23 @@
+html
+  body
+    .editor-row
+      .section
+        h5 Values
+        .editor-option
+          label.small Chart value
+          select.input-small(ng-change='set_refresh(true)', ng-model='panel.mode', ng-options="f for f in ['count','min','mean','max','total']")
+        .editor-option
+          label.small Time Field
+          input.input-small(ng-change='set_refresh(true)', placeholder='Start typing', bs-typeahead='fields.list', type='text', ng-model='panel.time_field')
+        .editor-option(ng-show="panel.mode != 'count'")
+          label.small
+            | Value Field 
+            tip This field must contain a numeric value
+          input.input-large(ng-change='set_refresh(true)', placeholder='Start typing', bs-typeahead='fields.list', type='text', ng-model='panel.value_field')
+      .section
+        h5 Transform Series
+        .editor-option
+          label.small
+            | Derivative 
+            tip Plot the change per interval in the series
+          input(type='checkbox', ng-model='panel.derivative', ng-checked='panel.derivative', ng-change='set_refresh(true)')

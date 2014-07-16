@@ -1,0 +1,17 @@
+html
+  body
+    .editor-row
+      .section
+        .editor-option
+          label.small
+            | Relative time options 
+            small comma separated
+          input.input-large(type='text', array-join='', ng-model='panel.time_options')
+        .editor-option
+          label.small
+            | Auto-refresh options 
+            small comma separated
+          input.input-large(type='text', array-join='', ng-model='panel.refresh_intervals')
+        .editor-option
+          label.small Time Field
+          input.input-small(type='text', ng-model='panel.timefield')

@@ -1,0 +1,12 @@
+html
+  body
+    .row-fluid
+      .span4
+        label.small Title
+        input.input-medium(type='text', ng-model='panel.title')
+      .span2
+        label.small Height
+        input.input-mini(type='text', ng-model='panel.height')
+      .span1
+        label.small  Editable 
+        input(type='checkbox', ng-model='panel.editable', ng-checked='panel.editable')

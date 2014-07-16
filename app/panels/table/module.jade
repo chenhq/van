@@ -1,0 +1,156 @@
+html
+  body
+    div(ng-controller='table', ng-init='init()')
+      style.
+        .table-doc-table {
+        margin-left: 0px !important;
+        overflow-y: auto;
+        }
+        .table-sidebar {
+        width: 200px;
+        display: table-cell;
+        padding-right: 10px;
+        }
+        .table-main {
+        width: 100%;
+        display: table-cell;
+        }
+        .table-container {
+        display: table;
+        height: 100px;
+        width: 100%;
+        table-layout: fixed;
+        }
+        .table-fieldname {
+        white-space: nowrap;
+        }
+        .table-fieldname a {
+        word-wrap:break-word;
+        white-space: normal;
+        }
+        .table-details {
+        table-layout: fixed;
+        }
+        .table-details-field {
+        width: 200px;
+        }
+        .table-details-action {
+        width: 60px;
+        text-align: center;
+        }
+        .table-details-value {
+        }
+        .table-field-value {
+        white-space: pre-wrap;
+        }
+        .table-facet {
+        padding: 10px;
+        border: 1px solid #666;
+        }
+      .table-container
+        div(bindonce='', ng-class="{'table-sidebar':panel.field_list}", ng-if='panel.field_list')
+          div(style='{{panel.overflow}}:{{row.height}};overflow-y:auto')
+            strong
+              | Fields 
+              i.icon-chevron-sign-left.pointer(ng-click='panel.field_list = !panel.field_list', tooltip="'Hide field list'")
+            p
+              .small
+                span.link.small(ng-click='panel.all_fields = true;', ng-if='fields.list.length', ng-class='{strong:panel.all_fields}')
+                  | All ({{fields.list.length}})
+                |  /
+                span.link.small(ng-click='panel.all_fields = false;', ng-class='{strong:!panel.all_fields}')
+                  | Current ({{current_fields.length || 0}})
+              div
+                input.input-medium(type='text', placeholder='Type to filter...', ng-model='fieldFilter')
+              .small.muted(ng-show='panel.all_fields', style='margin-bottom:10px')
+                strong Note
+                |  These fields have been
+                br
+                |           extracted from your mapping.
+                br
+                |           Not all fields may be available
+                br
+                |           in your source document.
+              ul.unstyled(ng-if='panel.all_fields')
+                li.table-fieldname(ng-style='panel.style', ng-repeat='field in fields.list|filter:fieldFilter|orderBy:identity')
+                  i.pointer(ng-class="{'icon-check': columns[field],'icon-check-empty': _.isUndefined(columns[field])}", ng-click='toggle_field(field)')
+                  a.pointer(data-unique='1', bs-popover="'app/panels/table/micropanel.html'", data-placement='rightTop', ng-click='toggle_micropanel(field,true)', ng-class='{label: columns[field]}', bo-text='field')
+              ul.unstyled(ng-if='!panel.all_fields')
+                li.table-fieldname(ng-style='panel.style', ng-repeat='field in current_fields|filter:fieldFilter|orderBy:identity')
+                  i.pointer(ng-class="{'icon-check': columns[field],'icon-check-empty': _.isUndefined(columns[field])}", ng-click='toggle_field(field)')
+                  a.pointer(data-unique='1', bs-popover="'app/panels/table/micropanel.html'", data-placement='rightTop', ng-click='toggle_micropanel(field,true)', ng-class='{label: columns[field]}', bo-text='field')
+        .table-doc-table(ng-class="{'table-main':panel.field_list}")
+          div(style='{{panel.overflow}}:{{row.height}};overflow-y:auto')
+            .table-facet(ng-if='modalField')
+              h4
+                button.btn.btn-mini.btn-danger(ng-click='closeFacet();') close
+                |             {{adhocOpts.title}}
+                span.pointer.ng-scope.ng-pristine.ng-valid.ui-draggable(tooltip="'Drag to add to dashboard'", data-drag='true', data-jqyoui-options='kbnJqUiDraggableOptions', jqyoui-draggable="{animate:false,mutate:false,onStart:'panelMoveStart',onStop:'panelMoveStop',embedded:true}", ng-model='adhocOpts', data-original-title='', title='', aria-disabled='false', style='position: relative;')
+                  i.icon-move
+              kibana-simple-panel(type="'{{facetType}}'", panel='{{facetPanel}}', ng-cloak='')
+            i.pull-left.icon-chevron-sign-right.pointer(ng-click='panel.field_list = !panel.field_list', tooltip="'Show field list'", ng-show='!panel.field_list')
+            .row-fluid(ng-show='panel.paging')
+              .span1.offset1(style='text-align:right')
+                i.icon-circle-arrow-left.pointer(ng-click='panel.offset = 0', ng-show='panel.offset > 0')
+                i.icon-arrow-left.pointer(ng-click='panel.offset = (panel.offset - panel.size)', ng-show='panel.offset > 0')
+              .span8(style='text-align:center')
+                strong {{panel.offset}}
+                |  to 
+                strong {{panel.offset + data.slice(panel.offset,panel.offset+panel.size).length}}
+                small  of {{data.length}} available for paging
+              .span1(style='text-align:left')
+                i.icon-arrow-right.pointer(ng-click='panel.offset = (panel.offset + panel.size)', ng-show='data.length > panel.offset+panel.size')
+            table.table-hover.table.table-condensed(ng-style='panel.style')
+              thead(ng-show='panel.header')
+                th(ng-show='panel.fields.length<1') _source (select columns from the list to the left)
+                th(style='white-space:nowrap', ng-repeat='field in panel.fields')
+                  i.pointer.link.icon-caret-left(ng-show='!$first', ng-click='_.move(panel.fields,$index,$index-1)')
+                  span.pointer(ng-click='set_sort(field)', ng-show='panel.sortable')
+                    | {{field}}
+                    i.pointer.link(ng-show='field == panel.sort[0]', ng-class="{'icon-chevron-up': panel.sort[1] == 'asc','icon-chevron-down': panel.sort[1] == 'desc'}")
+                  span(ng-show='!panel.sortable') {{field}}
+                  i.pointer.link.icon-caret-right(ng-show='!$last', ng-click='_.move(panel.fields,$index,$index+1)')
+              tbody(bindonce='', ng-repeat='event in data| slice:panel.offset:panel.offset+panel.size', ng-class-odd="'odd'")
+                tr.pointer(ng-click='toggle_details(event)')
+                  td(ng-if='panel.fields.length<1', bo-text='event._source|stringify|tableTruncate:panel.trimFactor:1')
+                  td(ng-show='panel.fields.length>0', ng-repeat='field in panel.fields')
+                    span.table-field-value(ng-if='!panel.localTime || panel.timeField != field', bo-html='(event.kibana.highlight[field]||event.kibana._source[field]) |tableHighlight | tableTruncate:panel.trimFactor:panel.fields.length')
+                    span.table-field-value(ng-if='panel.localTime && panel.timeField == field', bo-html='event.sort[1]|tableLocalTime:event')
+                tr(ng-if='event.kibana.details')
+                  td(colspan='{{panel.fields.length}}', ng-switch='event.kibana.view')
+                    span
+                      | View:
+                      a.link(ng-class="{'strong':event.kibana.view == 'table'}", ng-click="event.kibana.view = 'table'") Table
+                      |  /
+                      a.link(ng-class="{'strong':event.kibana.view == 'json'}", ng-click="event.kibana.view = 'json'") JSON
+                      |  /
+                      a.link(ng-class="{'strong':event.kibana.view == 'raw'}", ng-click="event.kibana.view = 'raw'") Raw
+                      i.link.pull-right.icon-chevron-up(ng-click='toggle_details(event)')
+                    table.table.table-bordered.table-condensed.table-details(ng-switch-when='table')
+                      thead
+                        th.table-details-field Field
+                        th.table-details-action Action
+                        th.table-details-value Value
+                      tr(ng-repeat='(key,value) in event.kibana._source track by $index', ng-class-odd="'odd'")
+                        td(style='word-wrap:break-word', bo-text='key')
+                        td(style='white-space:nowrap')
+                          i.icon-search.pointer(ng-click='build_search(key,value)', tooltip="'Add filter to match this value'")
+                          i.icon-ban-circle.pointer(ng-click='build_search(key,value,true)', tooltip="'Add filter to NOT match this value'")
+                          i.pointer.icon-th(ng-click='toggle_field(key)', tooltip="'Toggle table column'")
+                        // At some point we need to create a more efficient way of applying the filter pipeline
+                        td(style='white-space:pre-wrap;word-wrap:break-word', bo-html='value|noXml|urlLink|stringify')
+                    pre(style='white-space:pre-wrap;word-wrap:break-word', bo-html='without_kibana(event)|tableJson:2', ng-switch-when='json').
+                      
+                    pre(bo-html='without_kibana(event)|tableJson:1', ng-switch-when='raw').
+                      
+            .row-fluid(ng-show='panel.paging')
+              .span1.offset3(style='text-align:right')
+                i.icon-circle-arrow-left.pointer(ng-click='panel.offset = 0', ng-show='panel.offset > 0')
+                i.icon-arrow-left.pointer(ng-click='panel.offset = (panel.offset - panel.size)', ng-show='panel.offset > 0')
+              .span4(style='text-align:center')
+                strong {{panel.offset}}
+                |  to 
+                strong {{panel.offset + data.slice(panel.offset,panel.offset+panel.size).length}}
+                small  of {{data.length}} available for paging
+              .span1(style='text-align:left')
+                i.icon-arrow-right.pointer(ng-click='panel.offset = (panel.offset + panel.size)', ng-show='data.length > panel.offset+panel.size')

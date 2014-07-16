@@ -1,0 +1,96 @@
+html
+  body
+    .editor-row
+      .section
+        h5 Chart Options
+        .editor-option
+          label.small Bars
+          input(type='checkbox', ng-model='panel.bars', ng-checked='panel.bars')
+        .editor-option
+          label.small Lines
+          input(type='checkbox', ng-model='panel.lines', ng-checked='panel.lines')
+        .editor-option
+          label.small Points
+          input(type='checkbox', ng-model='panel.points', ng-checked='panel.points')
+        .editor-option
+          label.small Selectable
+          input(type='checkbox', ng-model='panel.interactive', ng-checked='panel.interactive')
+        .editor-option
+          label.small xAxis
+          input(type='checkbox', ng-model="panel['x-axis']", ng-checked="panel['x-axis']")
+        .editor-option
+          label.small yAxis
+          input(type='checkbox', ng-model="panel['y-axis']", ng-checked="panel['y-axis']")
+        .editor-option(ng-show='panel.lines')
+          label.small Line Fill
+          select.input-mini(ng-model='panel.fill', ng-options='f for f in [0,1,2,3,4,5,6,7,8,9,10]')
+        .editor-option(ng-show='panel.lines')
+          label.small Line Width
+          select.input-mini(ng-model='panel.linewidth', ng-options='f for f in [0,1,2,3,4,5,6,7,8,9,10]')
+        .editor-option(ng-show='panel.points')
+          label.small Point Radius
+          select.input-mini(ng-model='panel.pointradius', ng-options='f for f in [1,2,3,4,5,6,7,8,9,10]')
+        .editor-option
+          label.small
+            | Y Format 
+            tip Y-axis formatting
+          select.input-small(ng-model='panel.y_format', ng-options="f for f in ['none','short','bytes']")
+      .section
+        h5 Multiple Series
+        .editor-option
+          label.small Stack
+          input(type='checkbox', ng-model='panel.stack', ng-checked='panel.stack')
+        .editor-option(ng-show='panel.stack')
+          label.small(style='white-space:nowrap')
+            | Percent 
+            tip Stack as a percentage of total
+          input(type='checkbox', ng-model='panel.percentage', ng-checked='panel.percentage')
+        .editor-option(ng-show='panel.stack')
+          label.small
+            | Stacked Values 
+            tip How should the values in stacked charts to be calculated?
+          select.input-small(ng-model='panel.tooltip.value_type', ng-options="f for f in ['cumulative','individual']")
+    .editor-row
+      .section
+        h5
+          | Header
+          h5
+            .editor-option
+              label.small Zoom
+              input(type='checkbox', ng-model='panel.zoomlinks', ng-checked='panel.zoomlinks')
+            .editor-option
+              label.small View
+              input(type='checkbox', ng-model='panel.options', ng-checked='panel.options')
+      .section
+        h5
+          | Legend
+          h5
+            .editor-option
+              label.small Legend
+              input(type='checkbox', ng-model='panel.legend', ng-checked='panel.legend')
+            .editor-option(ng-show='panel.legend')
+              label.small
+                | Query 
+                tip If no alias is set, show the query in the legend
+              input(type='checkbox', ng-model='panel.show_query', ng-checked='panel.show_query')
+            .editor-option(ng-show='panel.legend')
+              label.small Counts
+              input(type='checkbox', ng-model='panel.legend_counts', ng-checked='panel.legend_counts')
+      .section
+        h5
+          | Grid
+          h5
+            .editor-option
+              label.small
+                | Min / 
+                a(href='', ng-click='panel.grid.min = _.toggle(panel.grid.min,null,0)')
+                  | Auto 
+                  i.icon-star(ng-show='_.isNull(panel.grid.min)')
+              input.input-small(type='number', ng-model='panel.grid.min')
+            .editor-option
+              label.small
+                | Max / 
+                a(ref='', ng-click='panel.grid.max = _.toggle(panel.grid.max,null,0)')
+                  | Auto 
+                  i.icon-star(ng-show='_.isNull(panel.grid.max)')
+              input.input-small(type='number', ng-model='panel.grid.max')

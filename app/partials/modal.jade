@@ -2,8 +2,8 @@ html
   body
     .modal-header
       button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
-      h3 {{modal.title}}
+      h3 {{panels}}
     .modal-body
       div(ng-bind-html='modal.body')
     .modal-footer
-      button.btn.btn-danger(type='button', ng-click='dismiss()') Close
+      button.btn.btn-danger(type='button', ng-click='dismiss()') Closewww

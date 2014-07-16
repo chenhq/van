@@ -1,0 +1,40 @@
+html
+  body
+    div(ng-controller='hits', ng-init='init()')
+      #{{$id}}-legend(ng-show="panel.counter_pos == 'above' && (panel.chart == 'bar' || panel.chart == 'pie')")
+        // vertical legend
+        table.small(ng-show="panel.arrangement == 'vertical'")
+          tr(ng-repeat='query in data')
+            td
+              div(style='display:inline-block;border-radius:5px;background:{{query.info.color}};height:10px;width:10px')
+            td(style='padding-right:10px;padding-left:10px;') {{query.info.alias}}
+            td {{query.data[0][1]}}
+        // horizontal legend
+        .small(ng-show="panel.arrangement == 'horizontal'", ng-repeat='query in data', style='float:left;padding-left: 10px;')
+          span
+            i.icon-circle(ng-style='{color:query.info.color}')
+            |  {{query.info.alias}} ({{query.data[0][1]}})
+        br
+      div(style='clear:both')
+      div(ng-show="panel.chart == 'pie' || panel.chart == 'bar'", hits-chart='', params='{{panel}}', style='position:relative')
+      #{{$id}}-legend(ng-show="panel.counter_pos == 'below' && (panel.chart == 'bar' || panel.chart == 'pie')")
+        // vertical legend
+        table.small(ng-show="panel.arrangement == 'vertical'")
+          tr(ng-repeat='query in data')
+            td
+              i.icon-circle(ng-style='{color:query.info.color}')
+            td(style='padding-right:10px;padding-left:10px;') {{query.info.alias}}
+            td {{query.data[0][1]}}
+        // horizontal legend
+        .small(ng-show="panel.arrangement == 'horizontal'", ng-repeat='query in data', style='float:left;padding-left: 10px;')
+          span
+            i.icon-circle(ng-style='{color:query.info.color}')
+          |  {{query.info.alias}} ({{query.data[0][1]}})
+        br
+      div(ng-show="panel.chart == 'total'")
+        div(ng-style='panel.style', style="line-height:{{panel.style['font-size']}}") {{hits}}
+      span(ng-show="panel.chart == 'list'")
+        div(ng-style='panel.style', style="display:inline-block;line-height:{{panel.style['font-size']}}", ng-repeat='query in data')
+          i.icon-circle(style='color:{{query.info.color}}')
+          |  {{query.info.alias}} ({{query.hits}})
+      br(ng-show="panel.arrangement == 'vertical' && panel.chart == 'list'")

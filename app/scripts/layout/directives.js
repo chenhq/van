@@ -25,6 +25,7 @@ define(['angular', 'jquery.slimscroll'], function(angular) {
                         app.addClass('nav-min');
                         $rootScope.$broadcast('minNav:enabled');
                     }
+                    $rootScope.$broadcast('render');
                     e.preventDefault();
                 });
 

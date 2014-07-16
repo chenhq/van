@@ -1,0 +1,15 @@
+html
+  body
+    fieldset
+      label.small Field
+      br
+      input(ng-model='dashboard.current.services.query.list[id].field', type='text', bs-typeahead='fields.list', placeholder='Field')
+      p
+        label.small Count
+        br
+        input(ng-model='dashboard.current.services.query.list[id].size', type='number')
+      p
+        label.small Union
+        br
+        select.input-small(ng-model='dashboard.current.services.query.list[id].union')
+          option(ng-repeat="mode in ['none','AND','OR']") {{mode}}

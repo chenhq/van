@@ -1,0 +1,63 @@
+html
+  body
+    a.close(ng-click='dismiss()', href='') &times;
+    style.
+    span
+      i.pointer.icon-search(ng-click="fieldExists(micropanel.field,'must');dismiss();", tooltip="'Find events with this field'")
+      i.pointer.icon-ban-circle(ng-click="fieldExists(micropanel.field,'mustNot');dismiss();", tooltip="'Find events without this field'")
+      strong
+        | Micro Analysis of {{micropanel.field}} 
+        span(ng-if='micropanel.type') ({{micropanel.type}})
+      span(ng-show='micropanel.hasArrays')
+        | as
+        a.link(ng-class="{'strong':micropanel.grouped}", ng-click='toggle_micropanel(micropanel.field,true)') Groups
+        |  /
+        a.link(ng-class="{'strong':!micropanel.grouped}", ng-click='toggle_micropanel(micropanel.field,false)') Singles
+    table.table.table-striped.table-unpadded(style='width:100%;table-layout:fixed')
+      thead
+        th(style='width:15px')
+        th(style='width:260px') Value
+        th(style='width:40px') Action
+        th(style='width:100px;text-align:right') Count / {{micropanel.count}} events
+      tbody
+        tr(ng-repeat='field in micropanel.values')
+          td {{$index+1}}.
+          td(style='word-wrap:break-word')
+            | {{{true: &quot;__blank__&quot;, false:field[0] }[(field[0] == &apos;&apos; || field[0] == undefined) &amp;&amp; field[0] != 0]|tableTruncate:panel.trimFactor:3}}
+          td
+            i.pointer.icon-search(ng-click='build_search(micropanel.field,field[0]);dismiss();')
+            i.pointer.icon-ban-circle(ng-click='build_search(micropanel.field,field[0],true);dismiss();')
+          td.progress(style='position:relative')
+            style(scoped='').
+              .progress {
+              overflow: visible;
+              }
+            .bar(tooltip='percent(field[1],data.length)', ng-class='micropanelColor($index)', ng-style="{width: (field[1]/data.length) > 1 ? '100%' : percent(field[1],data.length)}")
+            span(style='position:absolute;right:20px;') {{field[1]}}
+    .progress.nomargin(ng-show='micropanel.grouped')
+      .bar.{{micropanelColor($index)}}(ng-repeat='field in micropanel.values', tooltip="$index+1+'. ('+percent(field[1],data.length)+')'", ng-style='{width: percent(field[1],data.length)};')
+    div
+      span(ng-repeat="field in micropanel.related|orderBy:'count':true|limitTo:micropanel.limit track by $index")
+        a(ng-click='toggle_field(field.name)', tooltip="'Toggle {{field.name}} column'") {{field.name}}
+        |  ({{Math.round((field.count / micropanel.count) * 100)}}%),
+      a.link(ng-show='micropanel.related.length > micropanel.limit', ng-click='micropanel.limit = micropanel.limit + 10')
+        | More 
+        i.icon-caret-right
+    .row-fluid
+      .span12
+        .btn-group
+          a.btn.dropdown-toggle.pointer(data-toggle='dropdown')
+            i.icon-list-ol
+            |  Terms
+            span.caret
+          ul.dropdown-menu
+            li
+              a(ng-click="termsModal(field,'bar');dismiss();") Bar
+            li
+              a(ng-click="termsModal(field,'pie');dismiss();") Pie
+            li
+              a(ng-click="termsModal(field,'table');dismiss();") Table
+        .btn-group(ng-show='micropanel.hasStats')
+          a.btn.dropdown-toggle.pointer(ng-click='statsModal(field);dismiss();')
+            i.icon-list-ol
+            |  Stats
