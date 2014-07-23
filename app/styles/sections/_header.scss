@@ -1,21 +1,50 @@
-.top-header {
+$dark:                  #242633;
+
+$header-bg-color: #ffffff;
+$header-border: darken(#fff, 10%);
+
+$header-link-color:  lighten(#000000, 50%);
+$header-link-color-sm:  darken(#ffffff, 5%);
+$header-link-hover-color: darken($header-link-color, 30%);
+$header-link-hover-color-sm:  lighten($header-link-color-sm, 30%);
+
+$header-nav-text-color: $header-link-color;
+
+$header-menu-button-color: lighten($header-link-color, 30%);
+$header-menu-button-hover-bg-color: darken($navbar-bg-color, 5%);
+
+$header-dropdown-menu-hover-bg-color:  $navbar-bg-color;
+
+header {
     z-index: 10;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height:( $header_height * 2);
-    background-color: $reverse;
+    height: ($header-height * 2);
+    background-color: $navbar-bg-color;
     @include box-shadow(0 1px 2px rgba(0,0,0,.1));
     @media (min-width:$screen-sm) {
-        height: $header_height;
+      height: $header-height;
+      background-color: $header-bg-color;
     }
 
     // shared
     a {
+        color: $header-link-color-sm;
         &:hover {
-            text-decoration: none;
+          text-decoration: none;
+          color: $header-link-hover-color-sm;
         }
+
+        @media (min-width: $screen-sm) {
+          color: $header-link-color;
+          &:hover {
+            text-decoration: none;
+            color: $header-link-hover-color;
+          }
+        }
+
     }
 
     .hidden-mobile {
@@ -29,31 +58,20 @@
     .logo {
         position: absolute;
         width: 100%;
-        height: $header_height;
-        background-color: darken($dark, 5%);
-        color: $bright;
-        line-height: $header_height;
+        height: $header-height;
+        color: $header-link-color-sm;
+        line-height: $header-height;
         text-align: center;
         @media (min-width: $screen-sm) {
             display: inline-block;
             width: 220px;
-            background-color: $reverse;
-            color: $text-color;
-            border-right: 1px solid $state-default-border;
+            color: $header-link-color;
+            border-right: 1px solid $header-border;
         }
 
         > a {
             font-size: 24px;
             vertical-align: middle;
-            color: $bright;
-            @media (min-width: $screen-sm) {
-                color: $text-color;
-            }
-
-            .logo-icon {
-                color: lighten($brand-primary, 20%);
-                margin-right: 12px;
-            }
         }
     }
 
@@ -62,25 +80,16 @@
     .menu-button {
         display: block;
         position: absolute;
-        top:  ( $header_height/2 - 17);
         right: 20px;
         width: 46px;
-        padding: 10px 12px;
+        margin: 5px 0px;
         border-radius: 4px;
+        color: $header-menu-button-color;
+        font-size: 28px;
+        text-align: center;
         &:hover {
             cursor: pointer;
-            background-color: darken($dark, 10%);
-        }
-
-        .icon-bar {
-            display: block;
-            width: 22px;
-            height: 2px;
-            border-radius: 1px;
-            background-color: #fff;
-        }
-        .icon-bar + .icon-bar {
-            margin-top: 4px;
+            background-color: $header-menu-button-hover-bg-color;
         }
 
         @media (min-width: $screen-sm) {
@@ -117,6 +126,7 @@
     .top-nav {
         width: 100%;
         padding: 50px 0 0;
+        color: $header-nav-text-color;
         @media (min-width: $screen-sm) {
             padding: 0 0 0 220px;
         }
@@ -177,7 +187,7 @@
 
                 ul.dropdown-menu {
                     a:hover {
-                        background-color: $skin;
+                        background-color: $header-dropdown-menu-hover-bg-color;
                         color: #fff;
                     }
 
@@ -213,7 +223,7 @@
             float: left;
             padding: 0;
             > li {
-                border-right: 1px solid $state-default-border;
+                border-right: 1px solid $header-border;
             }
         }
 

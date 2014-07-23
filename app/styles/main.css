@@ -1,19 +1,19 @@
 /*
-Syntax error: File to import not found or unreadable: compass/css3.
+Syntax error: File to import not found or unreadable: compass.
               Load path: /home/bigbox/github/van/app/styles (DEPRECATED)
         on line 8 of main.scss
 
-3: @import "global/var";
+3: //@import "global/var";
 4: // @import "sass-bootstrap/lib/bootstrap";
 5: @import "../bower_components/twbs-bootstrap-sass/assets/stylesheets/bootstrap";
-6: // @import "../bower_components/sass-bootstrap/lib/bootstrap";
-7: //@import "compass";
-8: @import "compass/css3";
-9: 
-10: //pages
-11: @import "global/var-pages";
-12: @import "pages/lock-screen";
-13: @import "pages/tasks";
+6: // @import "../bower_components/bootstrap/dist/css/bootstrap.css";
+7: // @import "../bower_components/sass-bootstrap/lib/bootstrap";
+8: @import "compass";
+9: //@import "compass/css3";
+10: //@import "global/var";
+11: @import "global/layout";
+12: //pages
+13: //@import "global/var-pages";
 
 Backtrace:
 main.scss:8
@@ -60,4 +60,4 @@ main.scss:8
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: compass/css3.\A               Load path: /home/bigbox/github/van/app/styles (DEPRECATED)\A         on line 8 of main.scss\A \A 3: @import \"global/var\";\A 4: // @import \"sass-bootstrap/lib/bootstrap\";\A 5: @import \"../bower_components/twbs-bootstrap-sass/assets/stylesheets/bootstrap\";\A 6: // @import \"../bower_components/sass-bootstrap/lib/bootstrap\";\A 7: //@import \"compass\";\A 8: @import \"compass/css3\";\A 9: \A 10: //pages\A 11: @import \"global/var-pages\";\A 12: @import \"pages/lock-screen\";\A 13: @import \"pages/tasks\";"; }
+  content: "Syntax error: File to import not found or unreadable: compass.\A               Load path: /home/bigbox/github/van/app/styles (DEPRECATED)\A         on line 8 of main.scss\A \A 3: //@import \"global/var\";\A 4: // @import \"sass-bootstrap/lib/bootstrap\";\A 5: @import \"../bower_components/twbs-bootstrap-sass/assets/stylesheets/bootstrap\";\A 6: // @import \"../bower_components/bootstrap/dist/css/bootstrap.css\";\A 7: // @import \"../bower_components/sass-bootstrap/lib/bootstrap\";\A 8: @import \"compass\";\A 9: //@import \"compass/css3\";\A 10: //@import \"global/var\";\A 11: @import \"global/layout\";\A 12: //pages\A 13: //@import \"global/var-pages\";"; }

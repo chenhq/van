@@ -1,0 +1,10 @@
+$navbar-bg-color:            #242633 !default;
+$navbar-link-active-bg:      #1FB5AD;
+$navbar-link-hover-bg:       $navbar-bg-color;
+
+$navbar-link-color:          darken(white, 50%);
+$navbar-link-active-color:   #ffffff;
+$navbar-link-hover-color:    darken(#fff, 10%);
+
+
+$header-height: 50px;       // top header

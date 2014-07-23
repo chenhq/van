@@ -104,22 +104,6 @@ define([
                  * --
                  */
 
-
-                /** add by chenhq for row edit modal
-                 * --
-                 */
-                $scope.rowConfigEdit = function () {
-                    console.log('xxx');
-                    rowConfigService.showModal({}, modalOptions).then(function (result) {
-                        /**
-                        dataService.deleteCustomer($scope.customer.id).then(function () {
-                            $location.path('/customers');
-                        }, processError);
-                        */
-
-                    });
-                };
-
                 $scope.init();
 
             }

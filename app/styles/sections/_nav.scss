@@ -1,18 +1,12 @@
-$nav_bg:                $dark;
-$nav_border:            darken($nav_bg, 10%);
-$sub_nav_bg:            $nav_bg;
-$link_color:            $text-color;
-$link_active_bg:        $brand-primary;
-
 #nav-container {
     z-index: 11; // should be highter than top header
     position: absolute;
-    top: $header_height;
+    top: $navbar-height;
     bottom: 0;
     left: -220px;
     width: 220px;
     padding: 0;
-    background-color: $nav_bg;
+    background-color: $navbar-bg-color;
     -webkit-overflow-scrolling: touch;
     -webkit-overflow-scrolling: -blackberry-touch;
     // @include transition(all .3s ease-in-out);
@@ -22,6 +16,7 @@ $link_active_bg:        $brand-primary;
 
     ul {
         padding-left: 0;
+        margin-left: 0;
         list-style: none;
     }
 }
@@ -52,7 +47,7 @@ $link_active_bg:        $brand-primary;
 
     a {
         font-size: 16px;
-        color: $link_color;
+        color: $navbar-link-color;
         @include transition(all .2s ease-in-out);
         &:hover {
             text-decoration: none;
@@ -68,17 +63,17 @@ $link_active_bg:        $brand-primary;
         &.open,
         &:hover {
             > a {
-                background-color: darken($nav_bg, 5%);
-                color: $bright;
+                background-color: $navbar-link-hover-bg;
+                color: $navbar-link-hover-color;
             }
-            > .fa { color: $bright; }
+            > .fa { color: $navbar-link-hover-color; }
         }
         &.active {
             > a {
-                background-color: $link_active_bg;
-                color: $bright;
+                background-color: $navbar-link-active-bg;
+                color: $navbar-link-active-color;
             }
-            > .fa { color: $bright; }
+            > .fa { color: $navbar-link-active-color; }
         }
 
         &:first-child > a {
@@ -109,7 +104,7 @@ $link_active_bg:        $brand-primary;
 
     // sub menu
     ul {
-        background-color: $sub_nav_bg;
+        background-color: $navbar-bg-color;
         display: none;
 
         a {
@@ -122,7 +117,7 @@ $link_active_bg:        $brand-primary;
             &:hover,
             &.active {
                 a {
-                    color: $brand-primary;
+                    color: $navbar-link-hover-color;
                 }
             }
             &:last-child > a {

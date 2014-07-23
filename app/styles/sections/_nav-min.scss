@@ -50,8 +50,8 @@
                     left: 100%;
                     top: 0;
                     width: 220px;
-                    @include border-right-radius($border-radius-base);
-                    @include box-shadow(1px 0 3px rgba(0,0,0,.2));
+                    //@include border-right-radius($border-radius-base);
+                    //@include box-shadow(1px 0 3px rgba(0,0,0,.2));
                 }
 
                 &:hover,

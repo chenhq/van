@@ -31,19 +31,16 @@ function (angular,_) {
               });
             };
 
-            var panelModal = $modal({
+            var panelModal = $modal.open({
               //template: './app/partials/paneleditor.html',
-              template: partial,
-              persist: true,
-              show: false,
+              templateUrl: partial,
+              //persist: true,
+              //show: false,
               scope: tmpScope,
-              keyboard: false
+              size: 'lg'
+              //keyboard: false
             });
 
-            // and show it
-            $q.when(panelModal).then(function(modalEl) {
-              modalEl.modal('show');
-            });
             scope.$apply();
           });
         }

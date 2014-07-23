@@ -54,7 +54,7 @@ html
             |  Zoom Out
           | &nbsp;|&nbsp;
         span.histogram-legend(ng-show='panel.legend', ng-repeat='series in legend')
-          i.icon-circle(ng-style='{color: series.query.color}')
+          i.fa.fa-circle(ng-style='{color: series.query.color}')
           span.small.histogram-legend-item
             span(ng-if='panel.show_query') {{series.query.alias || series.query.query}}
             span(ng-if='!panel.show_query') {{series.query.alias}}
